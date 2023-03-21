@@ -7,14 +7,17 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Architecture Reaserch Group'
-copyright = '2023, Mohamand Alian, Luke Staudacher'
-author = 'Mohamand Alian, Luke Staudacher'
+copyright = '2023, University of Knasas I2S|Institute for Information Sciences'
+author = 'I2S Architecture Reaserch Group'
 release = '1.0.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = [
+    'sphinx.ext.duration',
+    'sphinx.ext.doctest',
+    'sphinx.ext.autodoc',]
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -24,5 +27,5 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
