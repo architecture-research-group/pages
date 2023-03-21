@@ -8,32 +8,18 @@ Gem 5 Acceleration
 Amin said to make the template this way
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-funding 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-blah blah blah blah blah blah
-
 code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. this is an example of how to do a code sinp-it mace sure you specify the language for code highlighting
 .. code-block:: java
 
-    int kMeasuredPosHorizontal = 840; //Position measured when arm is horizontal
-    double kTicksPerDegree = 4096 / 360; //Sensor is 1:1 with arm rotation
-    int currentPos = _motorcontroller.getSelectedSensorPosition();
-    double degrees = (currenPos - kMeasuredPosHorizontal) / kTicksPerDegree;
-    double radians = java.lang.Math.toRadians(degrees);
-    double cosineScalar = java.lang.Math.cos(radians);
-
-    double maxGravityFF = 0.07;
-    _motorcontroller.set(ControlMode.MotionMagic, targetPos, DemandType.ArbitraryFeedForward, maxGravityFF * cosineScalar);
+    //this is how you add code
 
 
 .. this is how to make a bold heading as a sub link under the code section
 calculating Velocity Feed Forward gain (kF)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-A typical strategy for estimating the necessary motor output is to take the target velocity and multiplying by a tuned/calculated scalar.
-More advanced feed forward methods (gravity compensation, custom velocity and acceleration feed forwards, static offsets, etc.) can be done with the arbitrary feed forward features from the previous section..
-
+the "tilde" underline will greate a sub-sub section with a link 
 
 
 .. this will make a smaller bold template
