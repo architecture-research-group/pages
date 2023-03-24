@@ -12,14 +12,6 @@ gem5, Sniper, MARSSx86, and ZSim are just a few examples of architectural simula
 software-based architectural simulation is slow. We observed that gem5 runs up to 1.7x~3.7x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold.
 So, we extensively profiled gem5 using hardware performance counters on both Intel and Apple's CPUs. We found that gem5 is fronend-bounded and it is very sensetive to L1 cache size.
 
-FireSim commandline
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. this is an example of how to do a code sinp-it mace sure you specify the language for code highlighting
-.. code-block:: shell
-
-    //add the commandline code here, for example how to ssh into the f1 instance
-
-
 
 .. calculating Velocity Feed Forward gain (kF)
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,11 +25,11 @@ FireSim commandline
 
 
 .. this is how you can make a waring
-.. warning:: Arbitrary Feed Forward and Auxiliary Closed Loop cannot be used simultaneously *except* when using Motion Profile Arc.
+.. warning:: That's how we should include warnings
 .. this is how you can make a note
-.. note:: The output of the PIDF controller in Talon/Victor uses 1023 as the “full output".
+.. note:: That's how we should include notes
 .. this is how you can make tips
-.. tip:: If your elevator mechanism will change weight while in use (i.e. pick up a heavy game piece), it is helpful to measure gravity offsets at each expected weight and switch between Arbitrary Feed Forward values as needed.
+.. tip:: That's how you should include tips
 .. this is how you insert an image, make sure it is alse in the img folder
 .. image:: img/KU_campus_V2.png
 
@@ -71,6 +63,28 @@ FireSim commandline
 .. +----------------------------------------+------------------------------------------------------------------------+
 
 
+Configurations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Add some text ....
+We change the CPU type, number of CPUs, and memory size. We use the following CPU types:
+
+AtomicSimpleCPU (Atomic)
+----------------------------------------------------------------------------------
+CPU type with CPI = 1 where memory accesses are atomic and completed without modeling any contention or queuing delays.
+
+TimingSimpleCPU (Timing)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CPU type with CPI = 1 where memory accesses are modeled in detail considering the queuing delays and resource contentions in the memory and interconnect.
+
+In-order CPU (Minor)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In-order or Minor CPU models a fixed pipeline with strict in-order instruction execution. Minor CPU uses the detailed timing memory mode  for accessing memory.
+
+Out-of-order CPU (O3)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+O3 CPU models an out-of-order superscalar loosely based on the Alpha 2126 core. O3 CPU uses the detailed timing memory model for accessing memory.
+
+Some text refering to the table below ....
 
 .. heres how to put in a table with scrolling
 Base Hardware Configuration on FireSim
@@ -92,11 +106,17 @@ Operating System                                Linux Linaro (kernel 5.4.0)
 
 
 We set out to find the answers to the following questions 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 • Where are the bottlenecks in a state-of-theart architectural simulator?
 •  How much faster can architectural simulations run by tuning system configurations?
 • What are the opportunities in accelerating software simulation using hardware accelerators?
 
 
+FireSim HowTo
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+some text talking about the firesim and refering to the steps below.
+also refer to the firesim website for more information - https://fires.im/
 
 How to run gem5 on FireSim
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,15 +134,144 @@ How to run gem5 on FireSim
 6. PModify parameters, tests, and results
 
 
+Change FireSim
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Parameter at the top of arrow overrides others below.
 
-.. this is how you put in a url
-Here is the link to FireSim website for more information
-- https://fires.im/
+.. code-block:: bash
+    lass FireSimGem5ConfigQuadRocketConfig extends Config(
+
+    new freechips.rocketchip.subsystem.WithL1ICacheWays(16) ++  // change rocket I$
+
+    new freechips.rocketchip.subsystem.WithL1ICacheSets(64) ++ // change rocket I$
+
+    new freechips.rocketchip.subsystem.WithL1DCacheWays(16) ++  // change rocket D$ 
+
+    new freechips.rocketchip.subsystem.WithL1DCacheSets(64) ++ // change rocket D$
+
+    new WithDefaultFireSimBridges ++
+
+    new WithDefaultMemModel ++
+
+    new WithFireSimConfigTweaks ++
+
+    new chipyard.QuadRocketConfig)
 
 
-.. this is how you put in a hyperlink
-.. For scaling the value, the cosine term of trigonometry_ matches the scaling we need for our rotating arm.  The cosine term is at maximum value (+1) when at horizontal (0 degrees or radians) and is at 0 when the arm is vertical (90 degrees or pi/2 radians).
-.. To use this cosine value as a scalar, we will need to determine our current angle.  This requires knowing the current arm position and number of position ticks per degree, then converting to units of radians.
+Change FireSim
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Parameter at the top of arrow overrides others below.
 
-.. .. _trigonometry: https://en.wikipedia.org/wiki/Trigonometry
+.. code-block:: bash
+
+    mosh --ssh"=ssh -i firesim.pem" username@ip_addr
+
+
+gem5 as a Workload on FireSim
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+FireSim .json file is modified to run gem5 
+
+.. code-block:: bash 
+
+    ,json file should be added!
+
+Building our target design
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We use a quad-core Rocket Chip with an 8KB 2-way set associative icache & dcache, and a 512KB l2 cache base config. 
+
+We modify config_build.yaml, config_hwdb.yaml, config_runtime.yaml, & config_build_receipes.yaml files
+
+.. code-block:: bash
+    /home/centos/firesim/target-design/chipyard/generators/firechip/src/main/scala/TargetConfigs.Scala
+    /home/centos/firesim/target-design/chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scal    
+
+
+To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala or RocketConfigs.scala
+
+Next, we use golden gate compiler to generate the verilog code from the Chisel-generated RTL code for the AWS AGFI build process.
+
+gem5 as a Workload on FireSim
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.
+
+    - https://firemarshal.readthedocs.io/en/latest/index.html
+
+
+gem5 as a Workload on FireSim
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash 
+    
+
+    "benchmark_name": "gem5-workload",
+    "common_simulation_outputs": [ "uartlog","memory_stats*.csv", "TRACEFILE*"],
+    "common_simulation_inputs": ["gem5-workload-gem5-bin-dwarf"],
+    "post_run_hook": "gen-all-flamegraphs-fireperf.sh",
+    "workloads": [ {
+    "name": "gem5-workload-gem5",
+    "bootbinary": "../../../target-design/chipyard/software/firemarshal/images/gem5-workload-gem5-bin",
+    "rootfs": "../../../target-design/chipyard/software/firemarshal/images/gem5-workload-gem5.img",
+    "outputs": [ "/root/sim-environment/m5out" ] } ]
+
+
+
+Modifying the config scripts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+    Modifying config_build_recipe.yaml
+    firesim_rocket_quadcore_gem5_config: // This can be any name specified by the user
+    DESIGN: FireSim
+    TARGET_CONFIG: DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5Config19QuadRocketConfig
+    PLATFORM_CONFIG: WithAutoILA_F140MHz_BaseF1Config
+    deploy_triplet: null
+    post_build_hook: null
+    metasim_customruntimeconfig: null
+    bit_builder_recipe: bit-builder-recipes/f1.yaml
+
+
+Modifying config_build.yaml
+
+.. code-block:: bash
+    builds_to_run:​
+
+    firesim_rocket_quadcore_gem5_config  // This name must match the name specified in config_build_recipes.yam
+
+
+
+We used a Z1d.2xlarge FireSim manager instance
+
+.. code-block:: bash
+
+    //add the commandline code here, for example how to ssh into the f1 instance
+    firesim_rocket_quadcore_gem5_config4
+    agfi: agfi-0ae1574040e7ff0fc
+    deploy_triplet_override: null
+    custom_runtime_config: null
+    firesim_rocket_quadcore_gem5_config5: # Add your AGFI info to config_hwdb.yaml, so they can be deployed during simulation​
+    agfi: agfi-06e876ba9378cc9ff
+    deploy_triplet_override: null
+    custom_runtime_config: null
+    firesim_rocket_quadcore_gem5_config6:
+    agfi: agfi-00a966236eb672af3
+    deploy_triplet_override: null
+    custom_runtime_config: null
+    firesim_rocket_quadcore_gem5_config7:
+    agfi: agfi-0bc64b009db5f849a
+    deploy_triplet_override: null
+    custom_runtime_config: null
+}
+
+if you need hyperlink, you can use this template: 
+
+firesim website is this_
+
+.. _this: https://fires.im/
+
 

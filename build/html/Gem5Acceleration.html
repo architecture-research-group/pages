@@ -44,15 +44,21 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Gem 5 Acceleration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#code">code</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#calculating-velocity-feed-forward-gain-kf">calculating Velocity Feed Forward gain (kF)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#do-i-need-to-calculate-kf">Do I need to calculate kF?</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#general-closed-loop-configs">General Closed-Loop Configs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#motion-magic-closed-loop-configs">Motion Magic Closed-Loop Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overviwe">Overviwe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configurations">Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#atomicsimplecpu-atomic">AtomicSimpleCPU (Atomic)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#timingsimplecpu-timing">TimingSimpleCPU (Timing)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#in-order-cpu-minor">In-order CPU (Minor)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#out-of-order-cpu-o3">Out-of-order CPU (O3)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#base-hardware-configuration-on-firesim">Base Hardware Configuration on FireSim</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#we-set-out-to-find-the-answers-to-the-following-questions">We set out to find the answers to the following questions</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#firesim-howto">FireSim HowTo</a></li>
 </ul>
 </li>
 </ul>
@@ -83,124 +89,163 @@
              
   <section id="gem-5-acceleration">
 <h1>Gem 5 Acceleration<a class="headerlink" href="#gem-5-acceleration" title="Permalink to this heading"></a></h1>
-<section id="code">
-<h2>code<a class="headerlink" href="#code" title="Permalink to this heading"></a></h2>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">//this is how you add code</span>
-</pre></div>
-</div>
-<section id="calculating-velocity-feed-forward-gain-kf">
-<h3>calculating Velocity Feed Forward gain (kF)<a class="headerlink" href="#calculating-velocity-feed-forward-gain-kf" title="Permalink to this heading"></a></h3>
-<p>the “tilde” underline will greate a sub-sub section with a link</p>
-<section id="do-i-need-to-calculate-kf">
-<h4>Do I need to calculate kF?<a class="headerlink" href="#do-i-need-to-calculate-kf" title="Permalink to this heading"></a></h4>
-<p>If using any of the control modes, we recommend calculating the kF:</p>
+<section id="overviwe">
+<h2>Overviwe<a class="headerlink" href="#overviwe" title="Permalink to this heading"></a></h2>
+<p>This is just a simple copy-paste from the paper. We need to trim it…</p>
+<p>Software-based simulation is the backbone of computer architecture research and development. Since the inception of computer architecture as a field, many software-based
+architectural simulators1 have emerged. Currently, various architectural simulators are in-use by academia and industry for modeling different aspects of future computing platforms.
+gem5, Sniper, MARSSx86, and ZSim are just a few examples of architectural simulators with currently active communities. gem5 is one of the most popular hardware simulator in the community. Howerver,
+software-based architectural simulation is slow. We observed that gem5 runs up to 1.7x~3.7x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold.
+So, we extensively profiled gem5 using hardware performance counters on both Intel and Apple’s CPUs. We found that gem5 is fronend-bounded and it is very sensetive to L1 cache size.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Arbitrary Feed Forward and Auxiliary Closed Loop cannot be used simultaneously <em>except</em> when using Motion Profile Arc.</p>
+<p>That’s how we should include warnings</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The output of the PIDF controller in Talon/Victor uses 1023 as the “full output”.</p>
+<p>That’s how we should include notes</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If your elevator mechanism will change weight while in use (i.e. pick up a heavy game piece), it is helpful to measure gravity offsets at each expected weight and switch between Arbitrary Feed Forward values as needed.</p>
+<p>That’s how you should include tips</p>
 </div>
 <img alt="_images/KU_campus_V2.png" src="_images/KU_campus_V2.png" />
 </section>
-<section id="general-closed-loop-configs">
-<h4>General Closed-Loop Configs<a class="headerlink" href="#general-closed-loop-configs" title="Permalink to this heading"></a></h4>
-<table class="docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p>Name</p></td>
-<td><p>Description</p></td>
-</tr>
-<tr class="row-even"><td><p>PID 0 Primary Feedback Sensor</p></td>
-<td><div class="line-block">
-<div class="line">Selects the sensor source for PID0 closed loop, soft limits, and</div>
-<div class="line">value reporting for the SelectedSensor API.</div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p>PID 0 Primary Sensor Coefficient</p></td>
-<td><div class="line-block">
-<div class="line">Scalar (0,1] to multiply selected sensor value before using.</div>
-<div class="line">Note this will reduce resolution of the closed-loop.</div>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td><p>PID 1 Aux Feedback Sensor</p></td>
-<td><p>Select the sensor to use for Aux PID[1].</p></td>
-</tr>
-<tr class="row-odd"><td><p>PID 1 Aux Sensor Coefficient</p></td>
-<td><div class="line-block">
-<div class="line">Scalar (0,1] to multiply selected sensor value before using.</div>
-<div class="line">Note that this will reduce the resolution of the closed-loop.</div>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td><p>PID 1 Polarity</p></td>
-<td><div class="line-block">
-<div class="line">False: motor output = PID[0] + PID[1],  follower = PID[0] - PID[1].</div>
-<div class="line">True : motor output = PID[0] - PID[1],  follower = PID[0] + PID[1].</div>
-<div class="line">This only occurs if follower is an auxiliary type.</div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p>Closed Loop Ramp</p></td>
-<td><div class="line-block">
-<div class="line">How much ramping to apply in seconds from neutral-to-full.</div>
-<div class="line">A value of 0.100 means 100ms from neutral to full output.</div>
-<div class="line">Set to 0 to disable.</div>
-<div class="line">Max value is 10 seconds.</div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
+<section id="configurations">
+<h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this heading"></a></h2>
+<p>Add some text ….
+We change the CPU type, number of CPUs, and memory size. We use the following CPU types:</p>
+<section id="atomicsimplecpu-atomic">
+<h3>AtomicSimpleCPU (Atomic)<a class="headerlink" href="#atomicsimplecpu-atomic" title="Permalink to this heading"></a></h3>
+<p>CPU type with CPI = 1 where memory accesses are atomic and completed without modeling any contention or queuing delays.</p>
+<section id="timingsimplecpu-timing">
+<h4>TimingSimpleCPU (Timing)<a class="headerlink" href="#timingsimplecpu-timing" title="Permalink to this heading"></a></h4>
+<p>CPU type with CPI = 1 where memory accesses are modeled in detail considering the queuing delays and resource contentions in the memory and interconnect.</p>
 </section>
-<section id="motion-magic-closed-loop-configs">
-<h4>Motion Magic Closed-Loop Configs<a class="headerlink" href="#motion-magic-closed-loop-configs" title="Permalink to this heading"></a></h4>
+<section id="in-order-cpu-minor">
+<h4>In-order CPU (Minor)<a class="headerlink" href="#in-order-cpu-minor" title="Permalink to this heading"></a></h4>
+<p>In-order or Minor CPU models a fixed pipeline with strict in-order instruction execution. Minor CPU uses the detailed timing memory mode  for accessing memory.</p>
+</section>
+<section id="out-of-order-cpu-o3">
+<h4>Out-of-order CPU (O3)<a class="headerlink" href="#out-of-order-cpu-o3" title="Permalink to this heading"></a></h4>
+<p>O3 CPU models an out-of-order superscalar loosely based on the Alpha 2126 core. O3 CPU uses the detailed timing memory model for accessing memory.</p>
+<p>Some text refering to the table below ….</p>
+</section>
+</section>
+<section id="base-hardware-configuration-on-firesim">
+<h3>Base Hardware Configuration on FireSim<a class="headerlink" href="#base-hardware-configuration-on-firesim" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Description</p></th>
+<tr class="row-odd"><th class="head"><p>Parameters</p></th>
+<th class="head"><p>Value</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Acceleration</p></td>
-<td><p>Motion Magic target acceleration in (sensor units per 100ms) per second.</p></td>
+<tr class="row-even"><td><p>Core Frequency</p></td>
+<td><p>4GHz</p></td>
 </tr>
-<tr class="row-odd"><td><p>Cruise Velocity</p></td>
-<td><p>Motion Magic maximum target velocity in sensor units per 100ms.</p></td>
+<tr class="row-odd"><td><p>Number of Cores</p></td>
+<td><p>4 Cores</p></td>
 </tr>
-<tr class="row-even"><td><p>S-Curve Strength</p></td>
-<td><p>Zero to use trapezoidal motion during motion magic.  [1,8] for S-Curve, higher value for greater smoothing.</p></td>
+<tr class="row-even"><td><p>Superscalar</p></td>
+<td><p>8-width wide</p></td>
+</tr>
+<tr class="row-odd"><td><p>ROB/IQ/LQ/SQ Entries</p></td>
+<td><p>192/64/32/32</p></td>
+</tr>
+<tr class="row-even"><td><p>Int &amp; FP Registers</p></td>
+<td><p>128 &amp; 192</p></td>
+</tr>
+<tr class="row-odd"><td><p>Branch Predictor/BTB Entries</p></td>
+<td><p>TournamentBP/4096</p></td>
+</tr>
+<tr class="row-even"><td><p>Cache: L1I/L1D</p></td>
+<td><p>48KB(I), 32KB(D)</p></td>
+</tr>
+<tr class="row-odd"><td><p>DRAM</p></td>
+<td><p>2GB, DDR3-1600-8x8</p></td>
+</tr>
+<tr class="row-even"><td><p>Operating System</p></td>
+<td><p>Linux Linaro (kernel 5.4.0)</p></td>
 </tr>
 </tbody>
 </table>
-<p>Before invoking any of the closed loop modes, the following must be done:</p>
+<section id="we-set-out-to-find-the-answers-to-the-following-questions">
+<h4>We set out to find the answers to the following questions<a class="headerlink" href="#we-set-out-to-find-the-answers-to-the-following-questions" title="Permalink to this heading"></a></h4>
 <ul class="simple">
-<li><p>Complete the sensor bring up procedure to ensure sensor phase and general health.</p></li>
-<li><p>Record the maximum sensor velocity (position units per 100ms) at 100% motor output.</p></li>
-<li><p>Calculate an Arbitrary Feed Forward if necessary (gravity compensation, custom system characterization).</p></li>
-<li><p>Calculating Velocity Feed-Forward (kF) gain if applicable (Velocity Closed Loop, Motion Profile, Motion Magic).</p></li>
+<li><p>Where are the bottlenecks in a state-of-theart architectural simulator?</p></li>
+<li><p>How much faster can architectural simulations run by tuning system configurations?</p></li>
+<li><p>What are the opportunities in accelerating software simulation using hardware accelerators?</p></li>
 </ul>
+</section>
+</section>
+</section>
+<section id="firesim-howto">
+<h2>FireSim HowTo<a class="headerlink" href="#firesim-howto" title="Permalink to this heading"></a></h2>
+<p>some text talking about the firesim and refering to the steps below.
+also refer to the firesim website for more information - <a class="reference external" href="https://fires.im/">https://fires.im/</a></p>
 <ol class="arabic simple">
-<li><p>Checkout the relevant example from CTREs GitHub.</p></li>
-<li><p>Set all of your gains to zero.  Use either API or Phoenix Tuner.</p></li>
-<li><p>If not using Position-Closed loop mode, set the kF to your calculated value (see previous section).</p></li>
-<li><p>If using Motion Magic, set your initial cruise velocity and acceleration (section below).</p></li>
-<li><p>Deploy the application and use the joystick to adjust your target.  Normally this requires holding down a button on the gamepad (to enter closed loop mode).</p></li>
-<li><p>Plot the sensor-position to assess how well it is tracking.  This can be done with WPI plotting features, or with Phoenix Tuner.</p></li>
+<li><p>Set up the AWS FireSim environment</p></li>
+<li><p>Build the gem5 binary for RISCV ISA</p></li>
+<li><p>Prepare gem5 workload and transfer it to the instance</p></li>
+<li><p>Create FireSim workload using FireMarshal</p></li>
+<li><p>Build our target design</p></li>
+<li><p>PModify parameters, tests, and results</p></li>
 </ol>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages">https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages</a></p></li>
+<p>We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Parameter at the top of arrow overrides others below.</p>
+<p>We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Parameter at the top of arrow overrides others below.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mosh<span class="w"> </span>--ssh<span class="s2">&quot;=ssh -i firesim.pem&quot;</span><span class="w"> </span>username@ip_addr
+</pre></div>
+</div>
+<p>FireSim .json file is modified to run gem5</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>,json<span class="w"> </span>file<span class="w"> </span>should<span class="w"> </span>be<span class="w"> </span>added!
+</pre></div>
+</div>
+<p>We use a quad-core Rocket Chip with an 8KB 2-way set associative icache &amp; dcache, and a 512KB l2 cache base config.</p>
+<p>We modify config_build.yaml, config_hwdb.yaml, config_runtime.yaml, &amp; config_build_receipes.yaml files</p>
+<p>To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala or RocketConfigs.scala</p>
+<p>Next, we use golden gate compiler to generate the verilog code from the Chisel-generated RTL code for the AWS AGFI build process.</p>
+<p>FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://firemarshal.readthedocs.io/en/latest/index.html">https://firemarshal.readthedocs.io/en/latest/index.html</a></p></li>
 </ul>
-<p>For scaling the value, the cosine term of <a class="reference external" href="https://en.wikipedia.org/wiki/Trigonometry">trigonometry</a> matches the scaling we need for our rotating arm.  The cosine term is at maximum value (+1) when at horizontal (0 degrees or radians) and is at 0 when the arm is vertical (90 degrees or pi/2 radians).
-To use this cosine value as a scalar, we will need to determine our current angle.  This requires knowing the current arm position and number of position ticks per degree, then converting to units of radians.</p>
-</section>
-</section>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;benchmark_name&quot;</span>:<span class="w"> </span><span class="s2">&quot;gem5-workload&quot;</span>,
+<span class="s2">&quot;common_simulation_outputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;uartlog&quot;</span>,<span class="s2">&quot;memory_stats*.csv&quot;</span>,<span class="w"> </span><span class="s2">&quot;TRACEFILE*&quot;</span><span class="o">]</span>,
+<span class="s2">&quot;common_simulation_inputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;gem5-workload-gem5-bin-dwarf&quot;</span><span class="o">]</span>,
+<span class="s2">&quot;post_run_hook&quot;</span>:<span class="w"> </span><span class="s2">&quot;gen-all-flamegraphs-fireperf.sh&quot;</span>,
+<span class="s2">&quot;workloads&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;gem5-workload-gem5&quot;</span>,
+<span class="s2">&quot;bootbinary&quot;</span>:<span class="w"> </span><span class="s2">&quot;../../../target-design/chipyard/software/firemarshal/images/gem5-workload-gem5-bin&quot;</span>,
+<span class="s2">&quot;rootfs&quot;</span>:<span class="w"> </span><span class="s2">&quot;../../../target-design/chipyard/software/firemarshal/images/gem5-workload-gem5.img&quot;</span>,
+<span class="s2">&quot;outputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;/root/sim-environment/m5out&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+</pre></div>
+</div>
+<p>Modifying config_build.yaml</p>
+<p>We used a Z1d.2xlarge FireSim manager instance</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>//add<span class="w"> </span>the<span class="w"> </span>commandline<span class="w"> </span>code<span class="w"> </span>here,<span class="w"> </span><span class="k">for</span><span class="w"> </span>example<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>ssh<span class="w"> </span>into<span class="w"> </span>the<span class="w"> </span>f1<span class="w"> </span>instance
+firesim_rocket_quadcore_gem5_config4
+agfi:<span class="w"> </span>agfi-0ae1574040e7ff0fc
+deploy_triplet_override:<span class="w"> </span>null
+custom_runtime_config:<span class="w"> </span>null
+firesim_rocket_quadcore_gem5_config5:<span class="w"> </span><span class="c1"># Add your AGFI info to config_hwdb.yaml, so they can be deployed during simulation​</span>
+agfi:<span class="w"> </span>agfi-06e876ba9378cc9ff
+deploy_triplet_override:<span class="w"> </span>null
+custom_runtime_config:<span class="w"> </span>null
+firesim_rocket_quadcore_gem5_config6:
+agfi:<span class="w"> </span>agfi-00a966236eb672af3
+deploy_triplet_override:<span class="w"> </span>null
+custom_runtime_config:<span class="w"> </span>null
+firesim_rocket_quadcore_gem5_config7:
+agfi:<span class="w"> </span>agfi-0bc64b009db5f849a
+deploy_triplet_override:<span class="w"> </span>null
+custom_runtime_config:<span class="w"> </span>null
+</pre></div>
+</div>
+<p>}</p>
+<p>if you need hyperlink, you can use this template:</p>
+<p>firesim website is <a class="reference external" href="https://fires.im/">this</a></p>
 </section>
 </section>
 
