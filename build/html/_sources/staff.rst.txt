@@ -52,7 +52,7 @@ Undergraduate Students
 .. image:: img/Staudacher.JPG
     :width: 200px
     :align: left
-    :alt: Derrick Quinn
+    :alt: Luke Staudacher
 
 * **Luke Staudacher** - Undergraduate Student, Department of Electrical Engineering and Computer Science, University of Kansas
 Luke Staudacher is a Computer Engineering undergraduate at the University of Kansas with experience in backend web development, robotics, and electrical system design. He is a member of the SELF program and Eta Kapa Nu and currently works on the near memory networking project at I2S under Dr. Mohamad Alian. Luke is proficient in C/C++, Java, Python, Verilog, VHDL, Linux, and Windows, and has worked with CAD software such as Cadence Design Suite, KiCAD, and Solidworks. He is passionate about pursuing a career in technology and making meaningful contributions to the field.

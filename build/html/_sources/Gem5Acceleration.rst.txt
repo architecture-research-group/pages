@@ -4,7 +4,7 @@ Gem 5 Acceleration
 
 Overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. This is just a simple copy-paste from the paper. We need to trim it...
+This is just a simple copy-paste from the paper. We need to trim it...
 
 Software-based simulation is the backbone of computer architecture research and development. Since the inception of computer architecture as a field, many software-based
 architectural simulators1 have emerged. Currently, various architectural simulators are in-use by academia and industry for modeling different aspects of future computing platforms.
