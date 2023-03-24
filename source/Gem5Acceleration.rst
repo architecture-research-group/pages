@@ -2,7 +2,7 @@
 Gem 5 Acceleration
 ==================
 
-Overviwe
+Overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This is just a simple copy-paste from the paper. We need to trim it...
 
@@ -25,13 +25,13 @@ So, we extensively profiled gem5 using hardware performance counters on both Int
 
 
 .. this is how you can make a waring
-.. warning:: That's how we should include warnings
+..warning:: That's how we should include warnings
 .. this is how you can make a note
-.. note:: That's how we should include notes
+..note:: That's how we should include notes
 .. this is how you can make tips
-.. tip:: That's how you should include tips
+..tip:: That's how you should include tips
 .. this is how you insert an image, make sure it is alse in the img folder
-.. image:: img/KU_campus_V2.png
+..image:: img/KU_campus_V2.png
 
 
 

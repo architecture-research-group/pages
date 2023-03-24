@@ -44,7 +44,7 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Gem 5 Acceleration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overviwe">Overviwe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configurations">Configurations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#atomicsimplecpu-atomic">AtomicSimpleCPU (Atomic)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#timingsimplecpu-timing">TimingSimpleCPU (Timing)</a></li>
@@ -89,27 +89,20 @@
              
   <section id="gem-5-acceleration">
 <h1>Gem 5 Acceleration<a class="headerlink" href="#gem-5-acceleration" title="Permalink to this heading"></a></h1>
-<section id="overviwe">
-<h2>Overviwe<a class="headerlink" href="#overviwe" title="Permalink to this heading"></a></h2>
-<p>This is just a simple copy-paste from the paper. We need to trim it…</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>Software-based simulation is the backbone of computer architecture research and development. Since the inception of computer architecture as a field, many software-based
 architectural simulators1 have emerged. Currently, various architectural simulators are in-use by academia and industry for modeling different aspects of future computing platforms.
 gem5, Sniper, MARSSx86, and ZSim are just a few examples of architectural simulators with currently active communities. gem5 is one of the most popular hardware simulator in the community. Howerver,
 software-based architectural simulation is slow. We observed that gem5 runs up to 1.7x~3.7x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold.
 So, we extensively profiled gem5 using hardware performance counters on both Intel and Apple’s CPUs. We found that gem5 is fronend-bounded and it is very sensetive to L1 cache size.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>That’s how we should include warnings</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>That’s how we should include notes</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>That’s how you should include tips</p>
-</div>
-<img alt="_images/KU_campus_V2.png" src="_images/KU_campus_V2.png" />
+<p>..warning:: That’s how we should include warnings
+.. this is how you can make a note
+..note:: That’s how we should include notes
+.. this is how you can make tips
+..tip:: That’s how you should include tips
+.. this is how you insert an image, make sure it is alse in the img folder
+..image:: img/KU_campus_V2.png</p>
 </section>
 <section id="configurations">
 <h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this heading"></a></h2>
