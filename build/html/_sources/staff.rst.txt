@@ -55,10 +55,10 @@ Undergraduate Students
     I will be completing my undergraduate studies at the University of Kansas in May 2023 with a B.S. in Mathematics and Computer Science, and I am excited to be starting my Ph.D. program in Computer Science at KU this fall. My primary research interests lie in the fields of Computer Architecture and Accelerated Computing/HPC, with current research projects in Accelerated HPC Networking, as well as in the Modeling of Accelerated Systems. My language and platform of choice is Rust on Linux or MacOS, though I am also proficient in other programming languages such as C, Python, and shell scripting.
 
 
-.. image:: img/Quinn.png
+.. image:: img/Staudacher.JPG
     :width: 200px
     :align: left
     :alt: Derrick Quinn
 
 * **Luke Staudacher** - Undergraduate Student, Department of Electrical Engineering and Computer Science, University of Kansas
-Luke Staudacher is a dynamic Computer Engineering undergraduate with expertise in backend web development, robotics, and electrical system design. Currently pursuing his Bachelor's degree in Computer Engineering from the University of Kansas, Luke is a distinguished member of the SELF (Student Engineering Leadership Fellowship) program and Eta Kapa Nu. At I2S, Luke is contributing to the near memory networking project under the mentorship of Dr. Mohamad Alian, where his responsibilities include Verilog development, design tool investigation and web development. Luke is skilled in C/C++, Java, Python, Verilog, VHDL, as well as both Linux and Windows operating systems. He has also worked with industry-standard CAD software such as Cadence Design Suite, KiCAD, and Solidworks. With a strong academic foundation and diverse technical skills, Luke is excited to pursue a career in computer architecture and make significant contributions to the world of technology.
+Luke Staudacher is a Computer Engineering undergraduate at the University of Kansas with experience in backend web development, robotics, and electrical system design. He is a member of the SELF program and Eta Kapa Nu and currently works on the near memory networking project at I2S under Dr. Mohamad Alian. Luke is proficient in C/C++, Java, Python, Verilog, VHDL, Linux, and Windows, and has worked with CAD software such as Cadence Design Suite, KiCAD, and Solidworks. He is passionate about pursuing a career in technology and making meaningful contributions to the field.

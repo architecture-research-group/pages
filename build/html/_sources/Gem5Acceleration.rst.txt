@@ -5,8 +5,6 @@ Gem 5 Acceleration
 .. yes there are alot of robtics refrenaces in here....
 
 .. this will make a bold heading and make a link in the navigation bar under the project
-Amin said to make the template this way
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

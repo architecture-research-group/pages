@@ -13,10 +13,19 @@ Welcome to Architecture Reaserch Group's Documentation
 
 About
 ==================
+
+Lab Vision
+^^^^^^^^^^^^^^^^^^
+The computation in future datacenters will be distributed over a heterogenous array of processing elements, packaged modularly within a server's boundaries. The inter- and intra-server data movement will bottleneck such a computing landscape. The vision of my research is to seamlessly integrate processor, memory, and network architecture through a co-design with operating systems, network software stack, and software libraries to minimize the data movement in future datacenters.
+
+
+
 .. toctree::
    :maxdepth: 2
    
    staff
+
+
 
 
 
@@ -30,9 +39,9 @@ Project Catalog
    :maxdepth: 2
    
    Gem5Acceleration
-   Project2
-   Project3
-   Project4
-   Project5
-   Project6
-   Project7
+   .. Project2
+   .. Project3
+   .. Project4
+   .. Project5
+   .. Project6
+   .. Project7
