@@ -11,6 +11,14 @@ Welcome to Architecture Reaserch Group's Documentation
    :caption: Contents:
 
 
+About
+==================
+.. toctree::
+   :maxdepth: 2
+   
+   staff
+
+
 
 Project Catalog
 ==================
