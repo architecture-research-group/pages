@@ -1,10 +1,13 @@
 name: pageDeploy
 on: [push, pull_request, workflow_dispatch]
 permissions:
-    contents: write
+  contents: write
 jobs:
   docs:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
