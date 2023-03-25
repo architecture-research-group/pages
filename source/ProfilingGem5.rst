@@ -263,13 +263,13 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 
 • Next, we use golden gate compiler to generate the verilog code from the Chisel-generated RTL code for the AWS AGFI build process.
     - To move to the golden gate compiler directory, run:
-    .. code-block:: bash
+.. code-block:: bash
         cd /home/centos/firesim/sim/
     - Run make
-    .. code-block:: bash
+.. code-block:: bash
         make DESIGN=FireSim TARGET_CONFIG=DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks _FireSimGem5ConfigQuadRocketConfig PLATFORM_CONFIG=WithAutoILA_F140MHz_BaseF1Config f1
     - Then build the AWS FPGA Image by executing:
-    .. code-block:: bash
+.. code-block:: bash
         firesim buildbitstream
 
 • After a successfull build, update config_hwdb.yaml with the AGFI info.
