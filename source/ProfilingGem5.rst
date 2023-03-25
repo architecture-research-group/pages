@@ -222,7 +222,7 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
     new chipyard.QuadRocketConfig)
 
 • Modify config_build.yaml, config_runtime.yaml, & config_build_receipes.yaml files by adding the following lines.
-- config_build_receipes.yaml
+**config_build_receipes.yaml**
 
 .. code-block:: bash
     Modifying config_build_recipe.yaml
@@ -235,13 +235,14 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
     metasim_customruntimeconfig: null
     bit_builder_recipe: bit-builder-recipes/f1.yaml
     
-- config_build_receipes.yaml
+
+**config_build_receipes.yaml**
 
 .. code-block:: bash
     builds_to_run:
         - firesim_rocket_quadcore_gem5_config  # This name must match the name specified in config_build_recipes.yaml
 
-- config_runtime.yaml
+**config_runtime.yaml**
 
 .. code-block:: bash
     run_farm:
@@ -276,18 +277,19 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 
 
 • Next, we use golden gate compiler to generate the verilog code from the Chisel-generated RTL code for the AWS AGFI build process.
-- To move to the golden gate compiler directory, run:
+
+**To move to the golden gate compiler directory, run:**
 
 .. code-block:: bash
     cd /home/centos/firesim/sim/
 
-- Run make
+**Run make**
 
 .. code-block:: bash
 
     make DESIGN=FireSim TARGET_CONFIG=DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks _FireSimGem5ConfigQuadRocketConfig PLATFORM_CONFIG=WithAutoILA_F140MHz_BaseF1Config f1
 
-- Then build the AWS FPGA Image by executing:
+**Build the AWS FPGA Image by executing:**
 
 .. code-block:: bash
 
