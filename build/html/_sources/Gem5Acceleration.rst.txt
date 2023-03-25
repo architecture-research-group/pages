@@ -1,94 +1,91 @@
-.. this will make a link in the index.html
-Gem 5 Acceleration
+Software-based Architectural Simulation Acceleration
 ==================
 
 Overviwe
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This is just a simple copy-paste from the paper. We need to trim it...
 
-Software-based simulation is the backbone of computer architecture research and development. Since the inception of computer architecture as a field, many software-based
-architectural simulators1 have emerged. Currently, various architectural simulators are in-use by academia and industry for modeling different aspects of future computing platforms.
-gem5, Sniper, MARSSx86, and ZSim are just a few examples of architectural simulators with currently active communities. gem5 is one of the most popular hardware simulator in the community. Howerver,
-software-based architectural simulation is slow. We observed that gem5 runs up to 1.7x~3.7x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold.
-So, we extensively profiled gem5 using hardware performance counters on both Intel and Apple's CPUs. We found that gem5 is fronend-bounded and it is very sensetive to L1 cache size.
+gem5 is a cycle-accurate, open-source architectural simulator. It is widely used by reserchers both in academia and industry for a variety of purposes. But, it as slow! 
+Our observations showed that gem5 runs up to 1.7x~3.7x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold processor. 
 
+We set out to find the answers to the following questions:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+• Where are the bottlenecks in a state-of-theart architectural simulator?
+• How much faster can architectural simulations run by tuning system configurations?
+• What are the opportunities in accelerating software simulation using hardware accelerators?
 
-.. calculating Velocity Feed Forward gain (kF)
+We started our investigation by looking at L1 cache size, as we suspecetd that it should be distinguishing factor between these two processors. 
+Profiling gem5 on top of gem5 with different cache configuartions is super slow. FireSim was the solution!
+FireSim is FPGA-accelerated hardware simulation platform. We are able to prove our assumptions about L1 cache size impact on the simulation's speedup by using FireSim. 
+
+.. .. note:: note
+.. .. warning:: warnings
+.. .. tip:: tips
+.. warning::  Runnig gem5 on FireSim is still slow.
+.. .. image:: img/KU_campus_V2.png
+
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. the "tilde" underline will greate a sub-sub section with a link 
-
-
-.. .. this will make a smaller bold template
-.. Do I need to calculate kF?
 .. ----------------------------------------------------------------------------------
-.. If using any of the control modes, we recommend calculating the kF:
 
-
-.. this is how you can make a waring
-.. warning:: That's how we should include warnings
-.. this is how you can make a note
-.. note:: That's how we should include notes
-.. this is how you can make tips
-.. tip:: That's how you should include tips
-.. this is how you insert an image, make sure it is alse in the img folder
-.. image:: img/KU_campus_V2.png
-
-
-
-.. .. this is how you can make a table
-.. General Closed-Loop Configs
-.. ----------------------------------------------------------------------------------
-.. +----------------------------------------+------------------------------------------------------------------------+
-.. |               Parameters                |                         Description                                    |
-.. +----------------------------------------+------------------------------------------------------------------------+
-.. | PID 0 Primary Feedback Sensor          |  | Selects the sensor source for PID0 closed loop, soft limits, and    |
-.. |                                        |  | value reporting for the SelectedSensor API.                         |
-.. +----------------------------------------+------------------------------------------------------------------------+
-.. | PID 0 Primary Sensor Coefficient       |  | Scalar (0,1] to multiply selected sensor value before using.        |
-.. |                                        |  | Note this will reduce resolution of the closed-loop.                |
-.. +----------------------------------------+------------------------------------------------------------------------+
-.. | PID 1 Aux Feedback Sensor              |  Select the sensor to use for Aux PID[1].                              |
-.. +----------------------------------------+------------------------------------------------------------------------+
-.. | PID 1 Aux Sensor Coefficient           |  | Scalar (0,1] to multiply selected sensor value before using.        |
-.. |                                        |  | Note that this will reduce the resolution of the closed-loop.       |
-.. +----------------------------------------+------------------------------------------------------------------------+
-.. | PID 1 Polarity                         |  | False: motor output = PID[0] + PID[1],  follower = PID[0] - PID[1]. |
-.. |                                        |  | True : motor output = PID[0] - PID[1],  follower = PID[0] + PID[1]. |
-.. |                                        |  | This only occurs if follower is an auxiliary type.                  |
-.. +----------------------------------------+------------------------------------------------------------------------+
-.. | Closed Loop Ramp                       |  | How much ramping to apply in seconds from neutral-to-full.          |
-.. |                                        |  | A value of 0.100 means 100ms from neutral to full output.           |
-.. |                                        |  | Set to 0 to disable.                                                |
-.. |                                        |  | Max value is 10 seconds.                                            |
-.. +----------------------------------------+------------------------------------------------------------------------+
-
-
-Configurations
+Evaluations Platforms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Add some text ....
+
+This table summeries thye configurations of our three platforms.
+
+
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| Platform            | Dell Precision 7920  | Apple Macbook                              | Apple MacStudio                            |
++=====================+======================+============================================+============================================+
+| Config Name         | Intel_Xeon           | M1_Pro                                     | M1_Ultra                                   |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| SoC                 | Xeon Gold 6242R      | M1                                         |  M1 Ultra                                  |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| micro-architecture  | Cascade Lake         | Firestorm(P) + Icestorm(E)                 | Firestorm(P) + Icestorm(E)                 |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| Cores               | 20C/40T              |  P:4C/4T + E:4C/4T                         | P:16C/16T + E:4C/4T                        |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| Max Freq            | 3.1GHz (4.1GHz TB)   | 3.2GHz(P), 2GHz(E)                         | 3.2GHz(P), 2GHz(E)                         |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| L1 (per-core)       | 32KB(I) + 32KB(D)    | P:192KB(I) + 128KB(D) E:128KB(I) + 64KB(D) | P:192KB(I) + 128KB(D) E:128KB(I) + 64KB(D) |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+|  L2                 | 20MB                 | P:12MB + E:4MB                             |  P:48MB + E:8MB                            |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| L3                  | 35.75MB              | 8MB                                       | 96MB                                        |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| Cacheline           | 64B                  | 128B                                       | 128B                                       |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| Memory              | 96GB, DDR4-2933      | 8GB, LPDDR4X-4266                          | 64GB, LPDDR5-6400                          |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| DRAM BW             | 141 GB/s             | 68 GB/s                                    | 68 GB/s                                    |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+| VM page size        | 4KB                  | 16KB                                       | 16KB                                       |
++---------------------+----------------------+--------------------------------------------+--------------------------------------------+
+
+
+
+CPU Types
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 We change the CPU type, number of CPUs, and memory size. We use the following CPU types:
 
-AtomicSimpleCPU (Atomic)
-----------------------------------------------------------------------------------
-CPU type with CPI = 1 where memory accesses are atomic and completed without modeling any contention or queuing delays.
+**AtomicSimpleCPU (Atomic):** CPU type with CPI = 1 where memory accesses are atomic and completed without modeling any contention or queuing delays.
 
-TimingSimpleCPU (Timing)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-CPU type with CPI = 1 where memory accesses are modeled in detail considering the queuing delays and resource contentions in the memory and interconnect.
+**TimingSimpleCPU (Timing):** CPU type with CPI = 1 where memory accesses are modeled in detail considering the queuing delays and resource contentions in the memory and interconnect.
 
-In-order CPU (Minor)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In-order or Minor CPU models a fixed pipeline with strict in-order instruction execution. Minor CPU uses the detailed timing memory mode  for accessing memory.
+**In-order CPU (Minor):** In-order or Minor CPU models a fixed pipeline with strict in-order instruction execution. Minor CPU uses the detailed timing memory mode  for accessing memory.
 
-Out-of-order CPU (O3)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-O3 CPU models an out-of-order superscalar loosely based on the Alpha 2126 core. O3 CPU uses the detailed timing memory model for accessing memory.
+**Out-of-order CPU (O3):** O3 CPU models an out-of-order superscalar loosely based on the Alpha 2126 core. O3 CPU uses the detailed timing memory model for accessing memory.
 
-Some text refering to the table below ....
+.. tip::  Simple CPUs are used for fast-forwarding simulation, warming up caches, or for studies that do not require detailed CPU modeling. In-order and out-of-order CPU models are used for detailed micro-architectural studies.
 
-.. heres how to put in a table with scrolling
+
+
+
+Running gem5 on FireSim​
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We should start with the FireSim CPU configuration:
+
 Base Hardware Configuration on FireSim
-----------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 =======================================     =========================================================================================================================================================================================================================================================================================================================  
 Parameters										Value							
 =======================================     =========================================================================================================================================================================================================================================================================================================================  
@@ -103,23 +100,14 @@ DRAM                                            2GB, DDR3-1600-8x8
 Operating System                                Linux Linaro (kernel 5.4.0)
 =======================================     ========================================================================================================================================================================================================================================================================================================================= 
 
+.. tip:: More information on FireSim website - https://fires.im/
 
 
-We set out to find the answers to the following questions 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-• Where are the bottlenecks in a state-of-theart architectural simulator?
-•  How much faster can architectural simulations run by tuning system configurations?
-• What are the opportunities in accelerating software simulation using hardware accelerators?
-
-
-FireSim HowTo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-some text talking about the firesim and refering to the steps below.
-also refer to the firesim website for more information - https://fires.im/
 
 How to run gem5 on FireSim
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here are the steps to run gem5 on FireSim:
 
 1. Set up the AWS FireSim environment
 
@@ -134,81 +122,36 @@ How to run gem5 on FireSim
 6. PModify parameters, tests, and results
 
 
-Change FireSim
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Parameter at the top of arrow overrides others below.
 
-.. code-block:: bash
-    lass FireSimGem5ConfigQuadRocketConfig extends Config(
-
-    new freechips.rocketchip.subsystem.WithL1ICacheWays(16) ++  // change rocket I$
-
-    new freechips.rocketchip.subsystem.WithL1ICacheSets(64) ++ // change rocket I$
-
-    new freechips.rocketchip.subsystem.WithL1DCacheWays(16) ++  // change rocket D$ 
-
-    new freechips.rocketchip.subsystem.WithL1DCacheSets(64) ++ // change rocket D$
-
-    new WithDefaultFireSimBridges ++
-
-    new WithDefaultMemModel ++
-
-    new WithFireSimConfigTweaks ++
-
-    new chipyard.QuadRocketConfig)
-
-
-Change FireSim
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Parameter at the top of arrow overrides others below.
+We used a Z1d.2xlarge FireSim manager instance:
 
 .. code-block:: bash
 
     mosh --ssh"=ssh -i firesim.pem" username@ip_addr
 
-
-gem5 as a Workload on FireSim
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-FireSim .json file is modified to run gem5 
-
-.. code-block:: bash 
-
-    ,json file should be added!
-
-Building our target design
+Change FireSim
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We use a quad-core Rocket Chip with an 8KB 2-way set associative icache & dcache, and a 512KB l2 cache base config. 
-
-We modify config_build.yaml, config_hwdb.yaml, config_runtime.yaml, & config_build_receipes.yaml files
-
-.. code-block:: bash
-    /home/centos/firesim/target-design/chipyard/generators/firechip/src/main/scala/TargetConfigs.Scala
-    /home/centos/firesim/target-design/chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scal    
+We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Parameter at the top of arrow overrides others below.
 
 
-To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala or RocketConfigs.scala
+.. code-block:: yaml  
 
-Next, we use golden gate compiler to generate the verilog code from the Chisel-generated RTL code for the AWS AGFI build process.
+    class FireSimGem5ConfigQuadRocketConfig extends Config(
+    new freechips.rocketchip.subsystem.WithL1ICacheWays(16) ++  // change rocket I$
+    new freechips.rocketchip.subsystem.WithL1ICacheSets(64) ++ // change rocket I$
+    new freechips.rocketchip.subsystem.WithL1DCacheWays(16) ++  // change rocket D$ 
+    new freechips.rocketchip.subsystem.WithL1DCacheSets(64) ++ // change rocket D$
+    new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.QuadRocketConfig)
 
-gem5 as a Workload on FireSim
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+We modified FireSim .json file to run gem5 
 
+.. code-block:: json 
 
-
-
-
-FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.
-
-    - https://firemarshal.readthedocs.io/en/latest/index.html
-
-
-gem5 as a Workload on FireSim
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: bash 
-    
-
+    {
     "benchmark_name": "gem5-workload",
     "common_simulation_outputs": [ "uartlog","memory_stats*.csv", "TRACEFILE*"],
     "common_simulation_inputs": ["gem5-workload-gem5-bin-dwarf"],
@@ -218,14 +161,32 @@ gem5 as a Workload on FireSim
     "bootbinary": "../../../target-design/chipyard/software/firemarshal/images/gem5-workload-gem5-bin",
     "rootfs": "../../../target-design/chipyard/software/firemarshal/images/gem5-workload-gem5.img",
     "outputs": [ "/root/sim-environment/m5out" ] } ]
+    }
 
 
+We used a quad-core Rocket Chip with an 8KB 2-way set associative icache & dcache, and a 512KB l2 cache base config. Also, we modified *config_build.yaml*, *config_hwdb.yaml*, *config_runtime.yaml*, and *config_build_receipes.yaml* files:
 
-Modifying the config scripts
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
-    Modifying config_build_recipe.yaml
+
+    /home/centos/firesim/target-design/chipyard/generators/firechip/src/main/scala/TargetConfigs.Scala
+    /home/centos/firesim/target-design/chipyard/generators/chipyard/src/main/scala/config/RocketConfigs.scala    
+
+
+.. warning:: To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala or RocketConfigs.scala
+
+Next, we use golden gate compiler to generate the verilog code from the Chisel-generated RTL code for the AWS AGFI build process.
+
+FireSim requires a *.json* input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process.
+
+.. tip::  Check out the FireMarshal documentation for more details. https://firemarshal.readthedocs.io/en/latest/index.html
+
+
+
+Modifying config_build_recipe.yaml
+
+.. code-block:: yaml
+
     firesim_rocket_quadcore_gem5_config: // This can be any name specified by the user
     DESIGN: FireSim
     TARGET_CONFIG: DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5Config19QuadRocketConfig
@@ -236,20 +197,60 @@ Modifying the config scripts
     bit_builder_recipe: bit-builder-recipes/f1.yaml
 
 
-Modifying config_build.yaml
+We have modified  config_build.yaml like below:
 
-.. code-block:: bash
-    builds_to_run:​
+.. code-block:: yaml
 
+    builds_to_run:
     firesim_rocket_quadcore_gem5_config  // This name must match the name specified in config_build_recipes.yam
 
+**Modifying config_runtime.yaml**
 
+.. code-block:: yaml
 
-We used a Z1d.2xlarge FireSim manager instance
+    run_farm:
+    run_farm_hosts_to_use:
+    - f1.4xlarge: 1
+    Tracing:
+    enable: yes       # optional​
+    output_format: 2         # flame graph​
+    # Trigger selector.​
+    selector: 3              # Instruction Trigger within the target software like gem5_workload.json​
+    start: ffffffff00008013
+    end: ffffffff00010013
+    workload:
+    workload_name: gem5-workload.json
+
+**Modifying the gem5 runscript**
 
 .. code-block:: bash
 
-    //add the commandline code here, for example how to ssh into the f1 instance
+    firesim-start-trigger && ./gem5_script.sh && firesim-end-trigger # run in the bash prompt of the simulated system​
+
+
+**Golden gate**
+
+.. code-block:: bash
+
+   Golden gate compiler lives here at /home/centos/firesim/sim/
+
+**Make**
+
+.. code-block:: bash
+
+   make DESIGN=FireSim TARGET_CONFIG=DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTest ChipConfigTweaks _FireSimGem5ConfigQuadRocketConfig PLATFORM_CONFIG=WithAutoILA_F140MHz_ BaseF1Config f1
+
+**buildbitstream**
+
+.. code-block:: bash
+
+    This launches the buildfarm instance, calls the golden gate compiler with the parameters specified in config_build_recipes.yaml and produces an AGFI that runs on the FPGA.
+
+
+**Updating config_hwdb.yaml**
+
+.. code-block:: yaml
+
     firesim_rocket_quadcore_gem5_config4
     agfi: agfi-0ae1574040e7ff0fc
     deploy_triplet_override: null
@@ -266,12 +267,26 @@ We used a Z1d.2xlarge FireSim manager instance
     agfi: agfi-0bc64b009db5f849a
     deploy_triplet_override: null
     custom_runtime_config: null
-}
 
-if you need hyperlink, you can use this template: 
+**Run gem5 on FireSim**
 
-firesim website is this_
+.. code-block:: bash
 
-.. _this: https://fires.im/
+    firesim launchrunfarm; firesim infrasetup; firesim runworkload
+
+
+.. tip:: This launches the runfarm instance, sets up the simulation infrastructure, and begins simulation of the gem5 workload on the specified Target Design.
+
+
+.. tip:: gem5 and FireSim stats can be read from /home/centos/firesim/results-workload/
+
+
+
+
+.. if you need hyperlink, you can use this template: 
+
+.. firesim website is this_
+
+.. .. _this: https://fires.im/
 
 
