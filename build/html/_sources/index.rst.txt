@@ -38,7 +38,7 @@ Project Catalog
 .. toctree::
    :maxdepth: 2
    
-   Gem5Acceleration
+   ProfilingGem5
    .. Project2
    .. Project3
    .. Project4
