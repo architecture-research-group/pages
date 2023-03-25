@@ -113,17 +113,15 @@ In this documentation, we describe the steps for running gem5 as a workload on F
 
 Running gem5 on FireSim
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. image:: img/gem5-FireSim-Setup.png
-    :width: 300px
-    :align: left
-    :alt: Our Setup
 
 .. * **Neel Patel** - Masters Student, Department of Electrical Engineering and Computer Science, University of Kansas
-First, let’s discuss our experimental setup. We show an overview of our setup for running gem5 as a workload
-on FireSim. We compiled gem5 for an arm64 ISA and use the Sieve of Erastosthenes as the binary input to gem5.
-This is represented as gem5's workload in the figure. With the procedure described in step 3, gem5 is executed
-as a workload on FireSim.
+The main idea is to run gem5 as a workload on FireSim. To do this, the user must prepare the gem5 workload (Sieve of Eratosthenes),
+the FireSim workload, which in this case is the gem5 simulator, and finally, launch the FireSim simulation. Below 
+we give the general steps to achieve this:
 
+.. image:: img/setup.png
+    :width: 500px
+    :align: center
 
 
 Steps to run gem5 on FireSim
@@ -137,7 +135,7 @@ Steps to run gem5 on FireSim
 
 4. Create FireSim workload using FireMarshal
 
-5. Build our target design and modify parameter
+5. Build our target design and modify its parameter
 
 .. 6. Modify parameters, tests, and results
 
