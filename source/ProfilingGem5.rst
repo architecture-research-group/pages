@@ -221,7 +221,7 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
     new WithFireSimConfigTweaks ++
     new chipyard.QuadRocketConfig)
 
-• Modify config_build.yaml, config_runtime.yaml, & config_build_receipes.yaml files by adding the following lines.
+• Modify config_build_recipe.yaml, config_build.yaml, & config_runtime.yaml files by adding the following lines.
 
 **config_build_receipes.yaml**
 
@@ -285,6 +285,7 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 **To move to the golden gate compiler directory, run:**
 
 .. code-block:: bash
+    
     cd /home/centos/firesim/sim/
 
 **Run make**
