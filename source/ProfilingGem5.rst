@@ -237,7 +237,7 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
     bit_builder_recipe: bit-builder-recipes/f1.yaml
     
 
-**config_build_receipes.yaml**
+**config_build.yaml**
 
 .. code-block:: bash
     
@@ -247,6 +247,7 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 **config_runtime.yaml**
 
 .. code-block:: bash
+    
     run_farm:
         # run farm hosts to spawn: a mapping from a spec below (which is an EC2
         # instance type) to the number of instances of the given type that you
