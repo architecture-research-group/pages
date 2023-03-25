@@ -161,16 +161,22 @@ Prepare gem5 workload and transfer it to the instance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 • In this step, you should compile your binary (we used Sieve of Erastosthenes) for the gem5 target ISA.
 • Next, transfer your compiled binary to the AWS EC2 F1 instance. We used sftp like this:
+
 .. code-block:: bash
+
     sudo sftp -i firesim.pem username@ip_addr
+
 .. code-block:: bash
+
     put <filename> #this apples to any file
+
 
 Create FireSim workload using FireMarshal
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 • FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.
 https://firemarshal.readthedocs.io/en/latest/index.html
 • This produces the following .json file in the /home/centos/firesime/deploy/workload directory, which defines the gem5 workload, as well as it's output
+
 .. code-block:: bash 
 
     "benchmark_name": "gem5-workload",
@@ -187,31 +193,37 @@ https://firemarshal.readthedocs.io/en/latest/index.html
         } 
     ]
 
+
 Build our target design and Modify parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 To build your target design on FireSim, you can utilize any of the Chipyard's included RTL generators (e.g. Rocket Chip).
 • We use a quad-core Rocket Chip with an 16KB 2-way set associative icache & dcache, and a 512KB l2 cache base config. 
 • To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.​
+
 .. code-block:: bash
+
     /home/centos/firesim/target-design/chipyard/generators/firechip/src/main/scala/TargetConfigs.Scala
 
 
 An example of creating a target design with 64KB L1I and L1D Caches
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Precedence of the parameters defined before goess from bottom up.
+
 .. code-block:: bash
+
     class FireSimGem5ConfigQuadRocketConfig extends Config(
-  new freechips.rocketchip.subsystem.WithL1ICacheWays(16) ++  // change rocket I$
-  new freechips.rocketchip.subsystem.WithL1ICacheSets(64) ++	// change rocket I$
-  new freechips.rocketchip.subsystem.WithL1DCacheWays(16) ++  // change rocket D$
-  new freechips.rocketchip.subsystem.WithL1DCacheSets(64) ++	// change rocket D$
-  new WithDefaultFireSimBridges ++
-  new WithDefaultMemModel ++
-  new WithFireSimConfigTweaks ++
-  new chipyard.QuadRocketConfig)
+    new freechips.rocketchip.subsystem.WithL1ICacheWays(16) ++  // change rocket I$
+    new freechips.rocketchip.subsystem.WithL1ICacheSets(64) ++	// change rocket I$
+    new freechips.rocketchip.subsystem.WithL1DCacheWays(16) ++  // change rocket D$
+    new freechips.rocketchip.subsystem.WithL1DCacheSets(64) ++	// change rocket D$
+    new WithDefaultFireSimBridges ++
+    new WithDefaultMemModel ++
+    new WithFireSimConfigTweaks ++
+    new chipyard.QuadRocketConfig)
 
 • Modify config_build.yaml, config_runtime.yaml, & config_build_receipes.yaml files by adding the following lines.
-* • config_build_receipes.yaml
+- config_build_receipes.yaml
+
 .. code-block:: bash
     Modifying config_build_recipe.yaml
     firesim_rocket_quadcore_gem5_config: # This can be any name specified by the user
@@ -223,12 +235,14 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
     metasim_customruntimeconfig: null
     bit_builder_recipe: bit-builder-recipes/f1.yaml
     
-* • config_build_receipes.yaml
+- config_build_receipes.yaml
+
 .. code-block:: bash
     builds_to_run:
         - firesim_rocket_quadcore_gem5_config  # This name must match the name specified in config_build_recipes.yaml
 
-* • config_runtime.yaml
+- config_runtime.yaml
+
 .. code-block:: bash
     run_farm:
         # run farm hosts to spawn: a mapping from a spec below (which is an EC2
@@ -262,29 +276,42 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 
 
 • Next, we use golden gate compiler to generate the verilog code from the Chisel-generated RTL code for the AWS AGFI build process.
-    - To move to the golden gate compiler directory, run:
+- To move to the golden gate compiler directory, run:
+
 .. code-block:: bash
-        cd /home/centos/firesim/sim/
-    - Run make
+    cd /home/centos/firesim/sim/
+
+- Run make
+
 .. code-block:: bash
-        make DESIGN=FireSim TARGET_CONFIG=DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks _FireSimGem5ConfigQuadRocketConfig PLATFORM_CONFIG=WithAutoILA_F140MHz_BaseF1Config f1
-    - Then build the AWS FPGA Image by executing:
+
+    make DESIGN=FireSim TARGET_CONFIG=DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks _FireSimGem5ConfigQuadRocketConfig PLATFORM_CONFIG=WithAutoILA_F140MHz_BaseF1Config f1
+
+- Then build the AWS FPGA Image by executing:
+
 .. code-block:: bash
-        firesim buildbitstream
+
+    firesim buildbitstream
 
 • After a successfull build, update config_hwdb.yaml with the AGFI info.
+
 .. code-block:: bash
+
     firesim_rocket_quadcore_gem5_config: # Add your AGFI info to config_hwdb.yaml, so they can be deployed during simulation
 	agfi: agfi-06e876ba9378cc9ff
 	deploy_triplet_override: null
 	custom_runtime_config: null
 
 • Then, launch runfarm instance, setup the simulation infrastructure, and run your firesim simulation. 
+
 .. code-block:: bash
+
     firesim launchrunfarm; firesim infrasetup; firesim runworkload
 
 • Finally, results can be collected from the following directory.
+
 .. code-block:: bash
+
      cd /home/centos/firesim/results-workload/​​
 
 if you need hyperlink, you can use this template: 
