@@ -143,7 +143,7 @@ Steps to run gem5 on FireSim
 
 
 Set up the AWS FireSim environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 We use a Z1d.2xlarge FireSim manager instance. Check out the FireSim documentation for more details.
 https://docs.fires.im/en/stable/Initial-Setup/index.html
 
@@ -152,13 +152,13 @@ https://docs.fires.im/en/stable/Initial-Setup/index.html
     mosh --ssh"=ssh -i firesim.pem" username@ip_addr #username is centos, ip_addr is dynamically assign to the manager instance upon initialization
 
 Build the gem5 binary for RISC-V ISA
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 • Use QEMU to emulate a RISC-V architecture for building the gem5 binary and installing dependencies.
 • Test the compiled binary binary on We use a SiFive HiFive Unleashed developmental board, which natively runs Ubuntu.
 
 Prepare gem5 workload and transfer it to the instance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 • In this step, you should compile your binary (we used Sieve of Erastosthenes) for the gem5 target ISA.
 • Next, transfer your compiled binary to the AWS EC2 F1 instance. We used sftp like this:
 
@@ -172,7 +172,7 @@ Prepare gem5 workload and transfer it to the instance
 
 
 Create FireSim workload using FireMarshal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 • FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.
 https://firemarshal.readthedocs.io/en/latest/index.html
 • This produces the following .json file in the /home/centos/firesime/deploy/workload directory, which defines the gem5 workload, as well as it's output
@@ -195,7 +195,7 @@ https://firemarshal.readthedocs.io/en/latest/index.html
 
 
 Build our target design and Modify parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To build your target design on FireSim, you can utilize any of the Chipyard's included RTL generators (e.g. Rocket Chip).
 • We use a quad-core Rocket Chip with an 16KB 2-way set associative icache & dcache, and a 512KB l2 cache base config. 
 • To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.​
@@ -226,6 +226,7 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 **config_build_receipes.yaml**
 
 .. code-block:: bash
+    
     Modifying config_build_recipe.yaml
     firesim_rocket_quadcore_gem5_config: # This can be any name specified by the user
     DESIGN: FireSim
