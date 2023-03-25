@@ -1,16 +1,15 @@
 .. this will make a link in the index.html
-Gem 5 Acceleration
+Profiliing an Architectural Simulator
 ==================
 
 Overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This is just a simple copy-paste from the paper. We need to trim it...
-
-Software-based simulation is the backbone of computer architecture research and development. Since the inception of computer architecture as a field, many software-based
-architectural simulators1 have emerged. Currently, various architectural simulators are in-use by academia and industry for modeling different aspects of future computing platforms.
-gem5, Sniper, MARSSx86, and ZSim are just a few examples of architectural simulators with currently active communities. gem5 is one of the most popular hardware simulator in the community. Howerver,
-software-based architectural simulation is slow. We observed that gem5 runs up to 1.7x~3.7x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold.
-So, we extensively profiled gem5 using hardware performance counters on both Intel and Apple's CPUs. We found that gem5 is fronend-bounded and it is very sensetive to L1 cache size.
+gem5 is a state-of-the-art software-based architectural simulator with
+wide spread use both in academia and industry.We set out to profile the performance of gem5
+on different platforms and evaluate its performance. Our observation show that gem5 is
+1.7x~3.7x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold.
+Hence, we use FireSim to validate our hypothesis that gem5 is largely impacted by its cache sizes.
+In this documentation, we describe the steps for running gem5 as a workload on FireSim.
 
 
 .. calculating Velocity Feed Forward gain (kF)
@@ -63,60 +62,62 @@ So, we extensively profiled gem5 using hardware performance counters on both Int
 .. +----------------------------------------+------------------------------------------------------------------------+
 
 
-Configurations
+.. Configurations
+.. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. Add some text ....
+.. We change the CPU type, number of CPUs, and memory size. We use the following CPU types:
+
+.. AtomicSimpleCPU (Atomic)
+.. ----------------------------------------------------------------------------------
+.. CPU type with CPI = 1 where memory accesses are atomic and completed without modeling any contention or queuing delays.
+
+.. TimingSimpleCPU (Timing)
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. CPU type with CPI = 1 where memory accesses are modeled in detail considering the queuing delays and resource contentions in the memory and interconnect.
+
+.. In-order CPU (Minor)
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. In-order or Minor CPU models a fixed pipeline with strict in-order instruction execution. Minor CPU uses the detailed timing memory mode  for accessing memory.
+
+.. Out-of-order CPU (O3)
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. O3 CPU models an out-of-order superscalar loosely based on the Alpha 2126 core. O3 CPU uses the detailed timing memory model for accessing memory.
+
+.. Some text refering to the table below ....
+
+.. .. heres how to put in a table with scrolling
+.. Base Hardware Configuration on FireSim
+.. ----------------------------------------------------------------------------------
+.. =======================================     =========================================================================================================================================================================================================================================================================================================================  
+.. Parameters										Value							
+.. =======================================     =========================================================================================================================================================================================================================================================================================================================  
+.. Core Frequency                                  4GHz
+.. Number of Cores                                 4 Cores
+.. Superscalar                                     8-width wide
+.. ROB/IQ/LQ/SQ Entries                            192/64/32/32
+.. Int & FP Registers                              128 & 192
+.. Branch Predictor/BTB Entries                    TournamentBP/4096
+.. Cache: L1I/L1D                                  48KB(I), 32KB(D)
+.. DRAM                                            2GB, DDR3-1600-8x8
+.. Operating System                                Linux Linaro (kernel 5.4.0)
+.. =======================================     ========================================================================================================================================================================================================================================================================================================================= 
+
+
+
+.. We set out to find the answers to the following questions 
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. • Where are the bottlenecks in a state-of-theart architectural simulator?
+.. •  How much faster can architectural simulations run by tuning system configurations?
+.. • What are the opportunities in accelerating software simulation using hardware accelerators?
+
+
+Running gem5 on FireSim
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Add some text ....
-We change the CPU type, number of CPUs, and memory size. We use the following CPU types:
 
-AtomicSimpleCPU (Atomic)
-----------------------------------------------------------------------------------
-CPU type with CPI = 1 where memory accesses are atomic and completed without modeling any contention or queuing delays.
-
-TimingSimpleCPU (Timing)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-CPU type with CPI = 1 where memory accesses are modeled in detail considering the queuing delays and resource contentions in the memory and interconnect.
-
-In-order CPU (Minor)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In-order or Minor CPU models a fixed pipeline with strict in-order instruction execution. Minor CPU uses the detailed timing memory mode  for accessing memory.
-
-Out-of-order CPU (O3)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-O3 CPU models an out-of-order superscalar loosely based on the Alpha 2126 core. O3 CPU uses the detailed timing memory model for accessing memory.
-
-Some text refering to the table below ....
-
-.. heres how to put in a table with scrolling
-Base Hardware Configuration on FireSim
-----------------------------------------------------------------------------------
-=======================================     =========================================================================================================================================================================================================================================================================================================================  
-Parameters										Value							
-=======================================     =========================================================================================================================================================================================================================================================================================================================  
-Core Frequency                                  4GHz
-Number of Cores                                 4 Cores
-Superscalar                                     8-width wide
-ROB/IQ/LQ/SQ Entries                            192/64/32/32
-Int & FP Registers                              128 & 192
-Branch Predictor/BTB Entries                    TournamentBP/4096
-Cache: L1I/L1D                                  48KB(I), 32KB(D)
-DRAM                                            2GB, DDR3-1600-8x8
-Operating System                                Linux Linaro (kernel 5.4.0)
-=======================================     ========================================================================================================================================================================================================================================================================================================================= 
-
-
-
-We set out to find the answers to the following questions 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-• Where are the bottlenecks in a state-of-theart architectural simulator?
-•  How much faster can architectural simulations run by tuning system configurations?
-• What are the opportunities in accelerating software simulation using hardware accelerators?
-
-
-FireSim HowTo
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-some text talking about the firesim and refering to the steps below.
-also refer to the firesim website for more information - https://fires.im/
+First, let’s discuss our experimental setup. We show an overview of our setup for running gem5 as a workload
+on FireSim. We compiled gem5 for an arm64 ISA and use the Sieve of Erastosthenes as the binary input to gem5.
+This is represented as gem5's workload in the figure. With the procedure described in step 3, gem5 is prepared
+as a workload on FireSim
 
 How to run gem5 on FireSim
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
