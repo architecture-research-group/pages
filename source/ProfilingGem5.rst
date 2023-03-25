@@ -222,6 +222,7 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
     new chipyard.QuadRocketConfig)
 
 • Modify config_build.yaml, config_runtime.yaml, & config_build_receipes.yaml files by adding the following lines.
+
 **config_build_receipes.yaml**
 
 .. code-block:: bash
@@ -239,6 +240,7 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 **config_build_receipes.yaml**
 
 .. code-block:: bash
+    
     builds_to_run:
         - firesim_rocket_quadcore_gem5_config  # This name must match the name specified in config_build_recipes.yaml
 
