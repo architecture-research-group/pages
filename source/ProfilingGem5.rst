@@ -205,7 +205,7 @@ To build your target design on FireSim, you can utilize any of the Chipyard's in
 
 An example of creating a target design with 64KB L1I and L1D Caches
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Precedence of the parameters defined before goess from bottom up.
+We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Precedence of the parameters defined before goess from bottom up. Note that: The default block size is 64Bytes.
 
 .. code-block:: bash
 
