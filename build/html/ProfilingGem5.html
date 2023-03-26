@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profiling an Architectural Simulator &mdash; Architecture Research Group 1.0.0 documentation</title>
+  <title>Profiliing an Architectural Simulator &mdash; Architecture Research Group 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -43,7 +43,7 @@
 <li class="toctree-l1"><a class="reference internal" href="staff.html">Staff Members</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Profiling an Architectural Simulator</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Profiliing an Architectural Simulator</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-gem5-on-firesim">Running gem5 on FireSim</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#steps-to-run-gem5-on-firesim">Steps to run gem5 on FireSim</a></li>
@@ -75,7 +75,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Profiling an Architectural Simulator</li>
+      <li class="breadcrumb-item active">Profiliing an Architectural Simulator</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/ProfilingGem5.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,21 +86,21 @@
            <div itemprop="articleBody">
              
   <section id="profiliing-an-architectural-simulator">
-<h1>Profiling an Architectural Simulator<a class="headerlink" href="#profiliing-an-architectural-simulator" title="Permalink to this heading"></a></h1>
+<h1>Profiliing an Architectural Simulator<a class="headerlink" href="#profiliing-an-architectural-simulator" title="Permalink to this heading"></a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>gem5 is a state-of-the-art software-based architectural simulator with
-wide spread use both in academia and industry. We set out to profile the performance of gem5
+wide spread use both in academia and industry.We set out to profile the performance of gem5
 on different platforms and evaluate its performance. Our observation show that gem5 is
 1.7x~3.7x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold.
-Hence, we use FireSim to validate our hypothesis that gem5 is largely impacted by its cache sizes. Insightful stats like cache misses, branch mispredictions, cpu utilization etc. are collected by reading performance counters on these platforms.
+Hence, we use FireSim to validate our hypothesis that gem5 is largely impacted by its cache sizes.
 In this documentation, we describe the steps for running gem5 as a workload on FireSim.</p>
 </section>
 <section id="running-gem5-on-firesim">
 <h2>Running gem5 on FireSim<a class="headerlink" href="#running-gem5-on-firesim" title="Permalink to this heading"></a></h2>
-<p>The main idea is to execute gem5 as a workload on FireSim to validate our assumption. To do this, the user must prepare the gem5 workload (e.g. Sieve of Eratosthenes),
-the FireSim workload, which is the gem5 simulator, and finally, launch the FireSim simulation. Below
-we give the general steps required to achieve this:</p>
+<p>The main idea is to run gem5 as a workload on FireSim. To do this, the user must prepare the gem5 workload (Sieve of Eratosthenes),
+the FireSim workload, which in this case is the gem5 simulator, and finally, launch the FireSim simulation. Below
+we give the general steps to achieve this:</p>
 <a class="reference internal image-reference" href="_images/setup.png"><img alt="_images/setup.png" class="align-center" src="_images/setup.png" style="width: 500px;" /></a>
 <section id="steps-to-run-gem5-on-firesim">
 <h3>Steps to run gem5 on FireSim<a class="headerlink" href="#steps-to-run-gem5-on-firesim" title="Permalink to this heading"></a></h3>
@@ -117,7 +117,7 @@ we give the general steps required to achieve this:</p>
 <h2>Set up the AWS FireSim environment<a class="headerlink" href="#set-up-the-aws-firesim-environment" title="Permalink to this heading"></a></h2>
 <p>We use a Z1d.2xlarge FireSim manager instance. Check out the FireSim documentation for more details.
 <a class="reference external" href="https://docs.fires.im/en/stable/Initial-Setup/index.html">https://docs.fires.im/en/stable/Initial-Setup/index.html</a></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mosh<span class="w"> </span>--ssh<span class="s2">&quot;=ssh -i firesim.pem&quot;</span><span class="w"> </span>username@ip_addr<span class="w"> </span><span class="c1">#username is centos, ip_addr is dynamically assigned to the manager instance upon initialization</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mosh<span class="w"> </span>--ssh<span class="s2">&quot;=ssh -i firesim.pem&quot;</span><span class="w"> </span>username@ip_addr<span class="w"> </span><span class="c1">#username is centos, ip_addr is dynamically assign to the manager instance upon initialization</span>
 </pre></div>
 </div>
 </section>
@@ -144,9 +144,10 @@ we give the general steps required to achieve this:</p>
 <section id="create-firesim-workload-using-firemarshal">
 <h2>Create FireSim workload using FireMarshal<a class="headerlink" href="#create-firesim-workload-using-firemarshal" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.
-<a class="reference external" href="https://firemarshal.readthedocs.io/en/latest/index.html">https://firemarshal.readthedocs.io/en/latest/index.html</a></p>
-<l1><p>This produces the following .json file in the /home/centos/firesim/deploy/workload directory, which defines the gem5 workload, as well as its outputs. Note that some options like post_run_hook are only required for profiling on the FPGA. Kindly refer to firesim documentation.</p></li>
+<li><p>FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.</p></li>
+</ul>
+<p><a class="reference external" href="https://firemarshal.readthedocs.io/en/latest/index.html">https://firemarshal.readthedocs.io/en/latest/index.html</a>
+• This produces the following .json file in the /home/centos/firesime/deploy/workload directory, which defines the gem5 workload, as well as it’s output</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;benchmark_name&quot;</span>:<span class="w"> </span><span class="s2">&quot;gem5-workload&quot;</span>,
 <span class="s2">&quot;common_simulation_outputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;uartlog&quot;</span>,<span class="s2">&quot;memory_stats*.csv&quot;</span>,<span class="w"> </span><span class="s2">&quot;TRACEFILE*&quot;</span><span class="o">]</span>,
 <span class="s2">&quot;common_simulation_inputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;gem5-workload-gem5-bin-dwarf&quot;</span><span class="o">]</span>,
@@ -165,11 +166,9 @@ we give the general steps required to achieve this:</p>
 </section>
 <section id="build-our-target-design-and-modify-parameters">
 <h2>Build our target design and Modify parameters<a class="headerlink" href="#build-our-target-design-and-modify-parameters" title="Permalink to this heading"></a></h2>
-<ul class="simple">
-<p><l1>To build your target design on FireSim, you can utilize any of the Chipyard’s included RTL generators (e.g. Rocket Chip).</p></li>
-<p><li>We use a quad-core Rocket Chip with an 16KB 2-way set associative icache &amp; dcache, and a 512KB l2 cache base config.</p></li>
-<p><li>To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.</p></li>
-</ul>
+<p>To build your target design on FireSim, you can utilize any of the Chipyard’s included RTL generators (e.g. Rocket Chip).
+• We use a quad-core Rocket Chip with an 16KB 2-way set associative icache &amp; dcache, and a 512KB l2 cache base config.
+• To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.​</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/home/centos/firesim/target-design/chipyard/generators/firechip/src/main/scala/TargetConfigs.Scala
 </pre></div>
 </div>
@@ -194,7 +193,7 @@ new<span class="w"> </span>chipyard.QuadRocketConfig<span class="o">)</span>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Modifying<span class="w"> </span>config_build_recipe.yaml
 firesim_rocket_quadcore_gem5_config:<span class="w"> </span><span class="c1"># This can be any name specified by the user</span>
 DESIGN:<span class="w"> </span>FireSim
-TARGET_CONFIG:<span class="w"> </span>DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5ConfigQuadRocketConfig
+TARGET_CONFIG:<span class="w"> </span>DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5Config19QuadRocketConfig
 PLATFORM_CONFIG:<span class="w"> </span>WithAutoILA_F140MHz_BaseF1Config
 deploy_triplet:<span class="w"> </span>null
 post_build_hook:<span class="w"> </span>null
@@ -291,7 +290,7 @@ workload:
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright © KU Architecture Research Group - 2335 Irving Hill Rd, Lawrence, KS 66045, United States.</p>
+    <p>&#169; Copyright 2023 KU Architecture Research Group - 2335 Irving Hill Rd, Lawrence, KS 66045, United States.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

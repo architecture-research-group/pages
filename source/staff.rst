@@ -1,7 +1,7 @@
-Staff Members
+People
 ==================
 
-Lab Director
+Principle Investigator
 ~~~~~~~~~~~~~~~~~~~
 .. image:: img/malian.png
     :width: 200px
