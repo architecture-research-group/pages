@@ -146,7 +146,7 @@ we give the general steps required to achieve this:</p>
 <ul class="simple">
 <li><p>FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.
 <a class="reference external" href="https://firemarshal.readthedocs.io/en/latest/index.html">https://firemarshal.readthedocs.io/en/latest/index.html</a></p>
-<l1><p>This produces the following .json file in the /home/centos/firesime/deploy/workload directory, which defines the gem5 workload, as well as it’s outputs.</p></li>
+<l1><p>This produces the following .json file in the /home/centos/firesim/deploy/workload directory, which defines the gem5 workload, as well as its outputs. Note that some options like post_run_hook are only required for profiling on the FPGA. Kindly refer to firesim documentation.</p></li>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;benchmark_name&quot;</span>:<span class="w"> </span><span class="s2">&quot;gem5-workload&quot;</span>,
 <span class="s2">&quot;common_simulation_outputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;uartlog&quot;</span>,<span class="s2">&quot;memory_stats*.csv&quot;</span>,<span class="w"> </span><span class="s2">&quot;TRACEFILE*&quot;</span><span class="o">]</span>,
 <span class="s2">&quot;common_simulation_inputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;gem5-workload-gem5-bin-dwarf&quot;</span><span class="o">]</span>,
@@ -194,7 +194,7 @@ new<span class="w"> </span>chipyard.QuadRocketConfig<span class="o">)</span>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Modifying<span class="w"> </span>config_build_recipe.yaml
 firesim_rocket_quadcore_gem5_config:<span class="w"> </span><span class="c1"># This can be any name specified by the user</span>
 DESIGN:<span class="w"> </span>FireSim
-TARGET_CONFIG:<span class="w"> </span>DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5Config19QuadRocketConfig
+TARGET_CONFIG:<span class="w"> </span>DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5ConfigQuadRocketConfig
 PLATFORM_CONFIG:<span class="w"> </span>WithAutoILA_F140MHz_BaseF1Config
 deploy_triplet:<span class="w"> </span>null
 post_build_hook:<span class="w"> </span>null
