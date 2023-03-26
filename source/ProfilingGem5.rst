@@ -23,15 +23,6 @@ In this documentation, we describe the steps for running gem5 as a workload on F
 .. If using any of the control modes, we recommend calculating the kF:
 
 
-.. this is how you can make a waring
-..warning:: That's how we should include warnings
-.. this is how you can make a note
-..note:: That's how we should include notes
-.. this is how you can make tips
-..tip:: That's how you should include tips
-.. this is how you insert an image, make sure it is alse in the img folder
-..image:: img/KU_campus_V2.png
-
 
 
 .. .. this is how you can make a table
