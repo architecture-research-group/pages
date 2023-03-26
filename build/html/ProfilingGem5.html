@@ -116,7 +116,7 @@ we give the general steps required to achieve this:</p>
 <section id="set-up-the-aws-firesim-environment">
 <h2>Set up the AWS FireSim environment<a class="headerlink" href="#set-up-the-aws-firesim-environment" title="Permalink to this heading"></a></h2>
 <p>We use a Z1d.2xlarge FireSim manager instance. Check out the FireSim documentation for more details.
-<a> class="reference external" href="https://docs.fires.im/en/stable/Initial-Setup/index.html">https://docs.fires.im/en/stable/Initial-Setup/index.html</a></p>
+<a class="reference external" href="https://docs.fires.im/en/stable/Initial-Setup/index.html">https://docs.fires.im/en/stable/Initial-Setup/index.html</a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mosh<span class="w"> </span>--ssh<span class="s2">&quot;=ssh -i firesim.pem&quot;</span><span class="w"> </span>username@ip_addr<span class="w"> </span><span class="c1">#username is centos, ip_addr is dynamically assigned to the manager instance upon initialization</span>
 </pre></div>
 </div>
@@ -145,7 +145,7 @@ we give the general steps required to achieve this:</p>
 <h2>Create FireSim workload using FireMarshal<a class="headerlink" href="#create-firesim-workload-using-firemarshal" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.</p></li>
-<a> class="reference external" href="https://firemarshal.readthedocs.io/en/latest/index.html">https://firemarshal.readthedocs.io/en/latest/index.html</a></p>
+<a class="reference external" href="https://firemarshal.readthedocs.io/en/latest/index.html">https://firemarshal.readthedocs.io/en/latest/index.html</a></p>
 <l1><p>This produces the following .json file in the /home/centos/firesime/deploy/workload directory, which defines the gem5 workload, as well as it’s output</p></li>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;benchmark_name&quot;</span>:<span class="w"> </span><span class="s2">&quot;gem5-workload&quot;</span>,
 <span class="s2">&quot;common_simulation_outputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;uartlog&quot;</span>,<span class="s2">&quot;memory_stats*.csv&quot;</span>,<span class="w"> </span><span class="s2">&quot;TRACEFILE*&quot;</span><span class="o">]</span>,
