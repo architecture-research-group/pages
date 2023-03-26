@@ -116,7 +116,7 @@ we give the general steps required to achieve this:</p>
 <section id="set-up-the-aws-firesim-environment">
 <h2>Set up the AWS FireSim environment<a class="headerlink" href="#set-up-the-aws-firesim-environment" title="Permalink to this heading"></a></h2>
 <p>We use a Z1d.2xlarge FireSim manager instance. Check out the FireSim documentation for more details.</p>
-<a> class="reference external" href="https://docs.fires.im/en/stable/Initial-Setup/index.html">https://docs.fires.im/en/stable/Initial-Setup/index.html</a></p>
+<p><a> class="reference external" href="https://docs.fires.im/en/stable/Initial-Setup/index.html">https://docs.fires.im/en/stable/Initial-Setup/index.html</a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mosh<span class="w"> </span>--ssh<span class="s2">&quot;=ssh -i firesim.pem&quot;</span><span class="w"> </span>username@ip_addr<span class="w"> </span><span class="c1">#username is centos, ip_addr is dynamically assigned to the manager instance upon initialization</span>
 </pre></div>
 </div>
@@ -167,7 +167,7 @@ we give the general steps required to achieve this:</p>
 <h2>Build our target design and Modify parameters<a class="headerlink" href="#build-our-target-design-and-modify-parameters" title="Permalink to this heading"></a></h2>
 <p><l1>To build your target design on FireSim, you can utilize any of the Chipyard’s included RTL generators (e.g. Rocket Chip).</p></li>
 <p><li>We use a quad-core Rocket Chip with an 16KB 2-way set associative icache &amp; dcache, and a 512KB l2 cache base config.</p></li>
-<p><li>To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.<\p></li>
+<p><li>To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.</p></li>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/home/centos/firesim/target-design/chipyard/generators/firechip/src/main/scala/TargetConfigs.Scala
 </pre></div>
 </div>
