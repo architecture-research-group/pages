@@ -15,10 +15,10 @@ Graduate Students
 .. image:: img/amin.jpg
     :width: 200px
     :align: left
-    :alt: Amin Mamandi
-
+    :alt: Amin Mamandipoor
+    
 * **Amin Mamandipoor** - PhD Student, Department of Electrical Engineering and Computer Science, University of Kansas
- Amin is currently pursuing his second-year Ph.D. in the EECS department at KU. He completed his B.Sc. and M.Sc. degrees in Computer Engineering from the University of Tabriz in 2018 and 2022, respectively. His research interests span across computer systems design, with a primary focus on computer architecture, datacenter networking, and operating systems. Currently, he is involved in a few projects that focus on integrating near-memory processing capabilities to optimize network performance for the next-generation datacenter.
+ Amin is currently pursuing his second-year Ph.D. in the EECS department at KU. He completed his B.Sc. and M.Sc. degrees in Computer Engineering from the University of Tabriz in 2018 and 2022, respectively. His research interests span across computer systems design, with a primary focus on computer architecture, datacenter networking, and operating systems. Currently, he is involved in a project that focuses on developing near-memory processing accelerators. He is skilled in several programming languages and software tools, including C/C++, Java, Python, Verilog, VHDL, as well as design software such as Cadence Virtuoso and Xilinx Vivado.
 
 .. image:: img/johnson.png
     :width: 200px
