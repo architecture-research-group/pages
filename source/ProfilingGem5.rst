@@ -1,5 +1,5 @@
 .. this will make a link in the index.html
-Profiliing an Architectural Simulator
+Profiling an Architectural Simulator
 ==================
 
 Overview
