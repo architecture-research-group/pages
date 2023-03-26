@@ -144,9 +144,9 @@ we give the general steps required to achieve this:</p>
 <section id="create-firesim-workload-using-firemarshal">
 <h2>Create FireSim workload using FireMarshal<a class="headerlink" href="#create-firesim-workload-using-firemarshal" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.</p></li>
+<li><p>FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.
 <a class="reference external" href="https://firemarshal.readthedocs.io/en/latest/index.html">https://firemarshal.readthedocs.io/en/latest/index.html</a></p>
-<l1><p>This produces the following .json file in the /home/centos/firesime/deploy/workload directory, which defines the gem5 workload, as well as it’s output</p></li>
+<l1><p>This produces the following .json file in the /home/centos/firesime/deploy/workload directory, which defines the gem5 workload, as well as it’s outputs.</p></li>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;benchmark_name&quot;</span>:<span class="w"> </span><span class="s2">&quot;gem5-workload&quot;</span>,
 <span class="s2">&quot;common_simulation_outputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;uartlog&quot;</span>,<span class="s2">&quot;memory_stats*.csv&quot;</span>,<span class="w"> </span><span class="s2">&quot;TRACEFILE*&quot;</span><span class="o">]</span>,
 <span class="s2">&quot;common_simulation_inputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;gem5-workload-gem5-bin-dwarf&quot;</span><span class="o">]</span>,
@@ -164,8 +164,8 @@ we give the general steps required to achieve this:</p>
 </div>
 </section>
 <section id="build-our-target-design-and-modify-parameters">
-<ul class="simple">
 <h2>Build our target design and Modify parameters<a class="headerlink" href="#build-our-target-design-and-modify-parameters" title="Permalink to this heading"></a></h2>
+<ul class="simple">
 <p><l1>To build your target design on FireSim, you can utilize any of the Chipyard’s included RTL generators (e.g. Rocket Chip).</p></li>
 <p><li>We use a quad-core Rocket Chip with an 16KB 2-way set associative icache &amp; dcache, and a 512KB l2 cache base config.</p></li>
 <p><li>To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.</p></li>
