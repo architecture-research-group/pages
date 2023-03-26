@@ -1,7 +1,7 @@
 People
 ==================
 
-Principle Investigator
+Principal Investigator
 ~~~~~~~~~~~~~~~~~~~
 .. image:: img/malian.png
     :width: 200px
