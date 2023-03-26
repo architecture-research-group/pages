@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome to Architecture Reaserch Group’s Documentation &mdash; Architecture Reaserch Group 1.0.0 documentation</title>
@@ -12,8 +12,9 @@
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -43,7 +44,7 @@
 <li class="toctree-l1"><a class="reference internal" href="staff.html">Staff Members</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Gem5Acceleration.html">Gem 5 Acceleration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProfilingGem5.html">Profiliing an Architectural Simulator</a></li>
 </ul>
 
         </div>
@@ -71,14 +72,14 @@
            <div itemprop="articleBody">
              
   <section id="welcome-to-architecture-reaserch-group-s-documentation">
-<h1>Welcome to Architecture Reaserch Group’s Documentation<a class="headerlink" href="#welcome-to-architecture-reaserch-group-s-documentation" title="Permalink to this heading"></a></h1>
+<h1>Welcome to Architecture Reaserch Group’s Documentation<a class="headerlink" href="#welcome-to-architecture-reaserch-group-s-documentation" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 </section>
 <section id="about">
-<h1>About<a class="headerlink" href="#about" title="Permalink to this heading"></a></h1>
+<h1>About<a class="headerlink" href="#about" title="Permalink to this headline"></a></h1>
 <section id="lab-vision">
-<h2>Lab Vision<a class="headerlink" href="#lab-vision" title="Permalink to this heading"></a></h2>
+<h2>Lab Vision<a class="headerlink" href="#lab-vision" title="Permalink to this headline"></a></h2>
 <p>The computation in future datacenters will be distributed over a heterogenous array of processing elements, packaged modularly within a server’s boundaries. The inter- and intra-server data movement will bottleneck such a computing landscape. The vision of my research is to seamlessly integrate processor, memory, and network architecture through a co-design with operating systems, network software stack, and software libraries to minimize the data movement in future datacenters.</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -93,13 +94,17 @@
 </section>
 </section>
 <section id="project-catalog">
-<h1>Project Catalog<a class="headerlink" href="#project-catalog" title="Permalink to this heading"></a></h1>
+<h1>Project Catalog<a class="headerlink" href="#project-catalog" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Gem5Acceleration.html">Gem 5 Acceleration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Gem5Acceleration.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Gem5Acceleration.html#configurations">Configurations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Gem5Acceleration.html#firesim-howto">FireSim HowTo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ProfilingGem5.html">Profiliing an Architectural Simulator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ProfilingGem5.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProfilingGem5.html#running-gem5-on-firesim">Running gem5 on FireSim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProfilingGem5.html#set-up-the-aws-firesim-environment">Set up the AWS FireSim environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProfilingGem5.html#build-the-gem5-binary-for-risc-v-isa">Build the gem5 binary for RISC-V ISA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProfilingGem5.html#prepare-gem5-workload-and-transfer-it-to-the-instance">Prepare gem5 workload and transfer it to the instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProfilingGem5.html#create-firesim-workload-using-firemarshal">Create FireSim workload using FireMarshal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ProfilingGem5.html#build-our-target-design-and-modify-parameters">Build our target design and Modify parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -116,7 +121,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2023, University of Knasas I2S|Institute for Information Sciences.</p>
+    <p>&#169; Copyright 2023, University of Kansas I2S|Institute for Information Sciences.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

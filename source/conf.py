@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Architecture Reaserch Group'
-copyright = '2023, University of Knasas I2S|Institute for Information Sciences'
+copyright = '2023, University of Kansas I2S|Institute for Information Sciences'
 author = 'I2S Architecture Reaserch Group'
 release = '1.0.0'
 
