@@ -7,7 +7,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Architecture Research Group'
-copyright = 'Copyright 2023, University of Kansas I2S|Institute for Information Sciences" -> "© KU Architecture Research Group - 2335 Irving Hill Rd, Lawrence, KS 66045, United States'
+copyright = '© KU Architecture Research Group - 2335 Irving Hill Rd, Lawrence, KS 66045, United States'
 author = 'I2S Architecture Reaserch Group'
 release = '1.0.0'
 
