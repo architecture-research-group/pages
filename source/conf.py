@@ -12,6 +12,8 @@ copyright = '2023 KU Architecture Research Group - 2335 Irving Hill Rd, Lawrence
 author = 'I2S Architecture Reaserch Group'
 release = '1.0.0'
 
+html_show_sphinx = False
+
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
