@@ -1,14 +1,15 @@
 .. this will make a link in the index.html
-Profiliing an Architectural Simulator
+Profiling an Architectural Simulator
 ==================
 
 Overview
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 gem5 is a state-of-the-art software-based architectural simulator with
-wide spread use both in academia and industry.We set out to profile the performance of gem5
+wide spread use both in academia and industry. We set out to profile the performance of gem5
 on different platforms and evaluate its performance. Our observation show that gem5 is
-1.7x~3.7x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold.
-Hence, we use FireSim to validate our hypothesis that gem5 is largely impacted by its cache sizes.
+1.7x~3.02x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold.
+Hence, we use FireSim to validate our hypothesis that gem5 is largely impacted by its cache sizes. Insightful stats like cache misses, 
+branch mispredictions, cpu utilization etc. are collected by reading performance counters on these platforms.
 In this documentation, we describe the steps for running gem5 as a workload on FireSim.
 
 
@@ -21,6 +22,7 @@ In this documentation, we describe the steps for running gem5 as a workload on F
 .. Do I need to calculate kF?
 .. ----------------------------------------------------------------------------------
 .. If using any of the control modes, we recommend calculating the kF:
+
 
 
 
@@ -105,12 +107,13 @@ Running gem5 on FireSim
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. * **Neel Patel** - Masters Student, Department of Electrical Engineering and Computer Science, University of Kansas
-The main idea is to run gem5 as a workload on FireSim. To do this, the user must prepare the gem5 workload (Sieve of Eratosthenes),
+The main idea is to execute gem5 as a workload on FireSim to validate our hypothesis that gem5 is largely imparted by the size of the l1 cache. 
+To do this, the user must prepare the gem5 workload (Sieve of Eratosthenes), 
 the FireSim workload, which in this case is the gem5 simulator, and finally, launch the FireSim simulation. Below 
-we give the general steps to achieve this:
+we give the general steps required to achieve this:
 
 .. image:: img/setup.png
-    :width: 500px
+    :width: 550px
     :align: center
 
 
@@ -125,7 +128,7 @@ Steps to run gem5 on FireSim
 
 4. Create FireSim workload using FireMarshal
 
-5. Build our target design and modify its parameter
+5. Build the target design and modify its parameter
 
 .. 6. Modify parameters, tests, and results
 
@@ -137,7 +140,7 @@ https://docs.fires.im/en/stable/Initial-Setup/index.html
 
 .. code-block:: bash
 
-    mosh --ssh"=ssh -i firesim.pem" username@ip_addr #username is centos, ip_addr is dynamically assign to the manager instance upon initialization
+    mosh --ssh"=ssh -i firesim.pem" username@ip_addr #username is centos, ip_addr is dynamically assigned to the manager instance upon initialization
 
 Build the gem5 binary for RISC-V ISA
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -152,7 +155,7 @@ Prepare gem5 workload and transfer it to the instance
 
 .. code-block:: bash
 
-    sudo sftp -i firesim.pem username@ip_addr
+    sudo sftp -i firesim.pem "username@ip_addr"
 
 .. code-block:: bash
 
@@ -161,16 +164,13 @@ Prepare gem5 workload and transfer it to the instance
 
 Create FireSim workload using FireMarshal
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-• FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.
-https://firemarshal.readthedocs.io/en/latest/index.html
-• This produces the following .json file in the /home/centos/firesime/deploy/workload directory, which defines the gem5 workload, as well as it's output
+• FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details. https://firemarshal.readthedocs.io/en/latest/index.html.
+• This produces the following .json file in the /home/centos/firesim/deploy/workload directory, which defines the gem5 workload, as well as its output
 
 .. code-block:: bash 
 
     "benchmark_name": "gem5-workload",
-    "common_simulation_outputs": [ "uartlog","memory_stats*.csv", "TRACEFILE*"],
-    "common_simulation_inputs": ["gem5-workload-gem5-bin-dwarf"],
-    "post_run_hook": "gen-all-flamegraphs-fireperf.sh",
+    "common_simulation_outputs": [ "uartlog"],
     "workloads": 
     [ 
         {
@@ -185,7 +185,7 @@ https://firemarshal.readthedocs.io/en/latest/index.html
 Build our target design and Modify parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To build your target design on FireSim, you can utilize any of the Chipyard's included RTL generators (e.g. Rocket Chip).
-• We use a quad-core Rocket Chip with an 16KB 2-way set associative icache & dcache, and a 512KB l2 cache base config. 
+• We use a quad-core Rocket Chip with an 16KB 2-way set associative icache & dcache, and a 512KB l2 cache base config.
 • To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.​
 
 .. code-block:: bash
@@ -308,11 +308,3 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 .. code-block:: bash
 
      cd /home/centos/firesim/results-workload/​​
-
-if you need hyperlink, you can use this template: 
-
-firesim website is this_
-
-.. _this: https://fires.im/
-
-
