@@ -165,9 +165,11 @@ we give the general steps required to achieve this:</p>
 </section>
 <section id="build-our-target-design-and-modify-parameters">
 <h2>Build our target design and Modify parameters<a class="headerlink" href="#build-our-target-design-and-modify-parameters" title="Permalink to this heading"></a></h2>
-<p>To build your target design on FireSim, you can utilize any of the Chipyard’s included RTL generators (e.g. Rocket Chip).
-• We use a quad-core Rocket Chip with an 16KB 2-way set associative icache &amp; dcache, and a 512KB l2 cache base config.
-• To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.​</p>
+<p>To build your target design on FireSim, you can utilize any of the Chipyard’s included RTL generators (e.g. Rocket Chip).</p>
+<ul class="simple">
+<li><p>We use a quad-core Rocket Chip with an 16KB 2-way set associative icache &amp; dcache, and a 512KB l2 cache base config.</p></li>
+<li><p>To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.​</p></li>
+</ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/home/centos/firesim/target-design/chipyard/generators/firechip/src/main/scala/TargetConfigs.Scala
 </pre></div>
 </div>
@@ -192,7 +194,7 @@ new<span class="w"> </span>chipyard.QuadRocketConfig<span class="o">)</span>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Modifying<span class="w"> </span>config_build_recipe.yaml
 firesim_rocket_quadcore_gem5_config:<span class="w"> </span><span class="c1"># This can be any name specified by the user</span>
 DESIGN:<span class="w"> </span>FireSim
-TARGET_CONFIG:<span class="w"> </span>DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5Config19QuadRocketConfig
+TARGET_CONFIG:<span class="w"> </span>DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5ConfigQuadRocketConfig
 PLATFORM_CONFIG:<span class="w"> </span>WithAutoILA_F140MHz_BaseF1Config
 deploy_triplet:<span class="w"> </span>null
 post_build_hook:<span class="w"> </span>null
