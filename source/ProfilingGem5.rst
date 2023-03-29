@@ -185,6 +185,7 @@ Create FireSim workload using FireMarshal
 Build our target design and Modify parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To build your target design on FireSim, you can utilize any of the Chipyard's included RTL generators (e.g. Rocket Chip).
+
 • We use a quad-core Rocket Chip with an 16KB 2-way set associative icache & dcache, and a 512KB l2 cache base config.
 • To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.​
 
@@ -218,7 +219,7 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
     Modifying config_build_recipe.yaml
     firesim_rocket_quadcore_gem5_config: # This can be any name specified by the user
     DESIGN: FireSim
-    TARGET_CONFIG: DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5Config19QuadRocketConfig
+    TARGET_CONFIG: DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5ConfigQuadRocketConfig
     PLATFORM_CONFIG: WithAutoILA_F140MHz_BaseF1Config
     deploy_triplet: null
     post_build_hook: null
