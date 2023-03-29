@@ -6,10 +6,13 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Architecture Reaserch Group'
-copyright = '2023, University of Kansas I2S|Institute for Information Sciences'
+project = 'Architecture Research Group'
+copyright = '2023 KU Architecture Research Group - 2335 Irving Hill Rd, Lawrence, KS 66045, United States'
+
 author = 'I2S Architecture Reaserch Group'
 release = '1.0.0'
+
+html_show_sphinx = False
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

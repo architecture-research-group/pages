@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profiliing an Architectural Simulator &mdash; Architecture Research Group 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="People" href="staff.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Architecture Research Group
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="staff.html">People</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Profiliing an Architectural Simulator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-gem5-on-firesim">Running gem5 on FireSim</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#steps-to-run-gem5-on-firesim">Steps to run gem5 on FireSim</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#set-up-the-aws-firesim-environment">Set up the AWS FireSim environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-the-gem5-binary-for-risc-v-isa">Build the gem5 binary for RISC-V ISA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-gem5-workload-and-transfer-it-to-the-instance">Prepare gem5 workload and transfer it to the instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-firesim-workload-using-firemarshal">Create FireSim workload using FireMarshal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-our-target-design-and-modify-parameters">Build our target design and Modify parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#an-example-of-creating-a-target-design-with-64kb-l1i-and-l1d-caches">An example of creating a target design with 64KB L1I and L1D Caches</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Architecture Research Group</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Profiliing an Architectural Simulator</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ProfilingGem5.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="profiliing-an-architectural-simulator">
+<h1>Profiliing an Architectural Simulator<a class="headerlink" href="#profiliing-an-architectural-simulator" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>gem5 is a state-of-the-art software-based architectural simulator with
+wide spread use both in academia and industry.We set out to profile the performance of gem5
+on different platforms and evaluate its performance. Our observation show that gem5 is
+1.7x~3.7x faster on a MacBook Pro w/ M1 vs. Dell server w/ Intel Xeon Gold.
+Hence, we use FireSim to validate our hypothesis that gem5 is largely impacted by its cache sizes.
+In this documentation, we describe the steps for running gem5 as a workload on FireSim.</p>
+</section>
+<section id="running-gem5-on-firesim">
+<h2>Running gem5 on FireSim<a class="headerlink" href="#running-gem5-on-firesim" title="Permalink to this heading"></a></h2>
+<p>The main idea is to run gem5 as a workload on FireSim. To do this, the user must prepare the gem5 workload (Sieve of Eratosthenes),
+the FireSim workload, which in this case is the gem5 simulator, and finally, launch the FireSim simulation. Below
+we give the general steps to achieve this:</p>
+<a class="reference internal image-reference" href="_images/setup.png"><img alt="_images/setup.png" class="align-center" src="_images/setup.png" style="width: 500px;" /></a>
+<section id="steps-to-run-gem5-on-firesim">
+<h3>Steps to run gem5 on FireSim<a class="headerlink" href="#steps-to-run-gem5-on-firesim" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Set up the AWS FireSim environment</p></li>
+<li><p>Build the gem5 binary for RISC-V ISA</p></li>
+<li><p>Prepare gem5 workload and transfer it to the instance</p></li>
+<li><p>Create FireSim workload using FireMarshal</p></li>
+<li><p>Build our target design and modify its parameter</p></li>
+</ol>
+</section>
+</section>
+<section id="set-up-the-aws-firesim-environment">
+<h2>Set up the AWS FireSim environment<a class="headerlink" href="#set-up-the-aws-firesim-environment" title="Permalink to this heading"></a></h2>
+<p>We use a Z1d.2xlarge FireSim manager instance. Check out the FireSim documentation for more details.
+<a class="reference external" href="https://docs.fires.im/en/stable/Initial-Setup/index.html">https://docs.fires.im/en/stable/Initial-Setup/index.html</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mosh<span class="w"> </span>--ssh<span class="s2">&quot;=ssh -i firesim.pem&quot;</span><span class="w"> </span>username@ip_addr<span class="w"> </span><span class="c1">#username is centos, ip_addr is dynamically assign to the manager instance upon initialization</span>
+</pre></div>
+</div>
+</section>
+<section id="build-the-gem5-binary-for-risc-v-isa">
+<h2>Build the gem5 binary for RISC-V ISA<a class="headerlink" href="#build-the-gem5-binary-for-risc-v-isa" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Use QEMU to emulate a RISC-V architecture for building the gem5 binary and installing dependencies.</p></li>
+<li><p>Test the compiled binary binary on We use a SiFive HiFive Unleashed developmental board, which natively runs Ubuntu.</p></li>
+</ul>
+</section>
+<section id="prepare-gem5-workload-and-transfer-it-to-the-instance">
+<h2>Prepare gem5 workload and transfer it to the instance<a class="headerlink" href="#prepare-gem5-workload-and-transfer-it-to-the-instance" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>In this step, you should compile your binary (we used Sieve of Erastosthenes) for the gem5 target ISA.</p></li>
+<li><p>Next, transfer your compiled binary to the AWS EC2 F1 instance. We used sftp like this:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>sftp<span class="w"> </span>-i<span class="w"> </span>firesim.pem<span class="w"> </span>username@ip_addr
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>put<span class="w"> </span>&lt;filename&gt;<span class="w"> </span><span class="c1">#this apples to any file</span>
+</pre></div>
+</div>
+</section>
+<section id="create-firesim-workload-using-firemarshal">
+<h2>Create FireSim workload using FireMarshal<a class="headerlink" href="#create-firesim-workload-using-firemarshal" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details.</p></li>
+</ul>
+<p><a class="reference external" href="https://firemarshal.readthedocs.io/en/latest/index.html">https://firemarshal.readthedocs.io/en/latest/index.html</a>
+• This produces the following .json file in the /home/centos/firesime/deploy/workload directory, which defines the gem5 workload, as well as it’s output</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;benchmark_name&quot;</span>:<span class="w"> </span><span class="s2">&quot;gem5-workload&quot;</span>,
+<span class="s2">&quot;common_simulation_outputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;uartlog&quot;</span>,<span class="s2">&quot;memory_stats*.csv&quot;</span>,<span class="w"> </span><span class="s2">&quot;TRACEFILE*&quot;</span><span class="o">]</span>,
+<span class="s2">&quot;common_simulation_inputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="s2">&quot;gem5-workload-gem5-bin-dwarf&quot;</span><span class="o">]</span>,
+<span class="s2">&quot;post_run_hook&quot;</span>:<span class="w"> </span><span class="s2">&quot;gen-all-flamegraphs-fireperf.sh&quot;</span>,
+<span class="s2">&quot;workloads&quot;</span>:
+<span class="o">[</span>
+<span class="w">    </span><span class="o">{</span>
+<span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;gem5-workload-gem5&quot;</span>,
+<span class="s2">&quot;bootbinary&quot;</span>:<span class="w"> </span><span class="s2">&quot;../../../target-design/chipyard/software/firemarshal/images/gem5-workload-gem5-bin&quot;</span>,
+<span class="s2">&quot;rootfs&quot;</span>:<span class="w"> </span><span class="s2">&quot;../../../target-design/chipyard/software/firemarshal/images/gem5-workload-gem5.img&quot;</span>,
+<span class="s2">&quot;outputs&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;/root/sim-environment/m5out&quot;</span><span class="w"> </span><span class="o">]</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="build-our-target-design-and-modify-parameters">
+<h2>Build our target design and Modify parameters<a class="headerlink" href="#build-our-target-design-and-modify-parameters" title="Permalink to this heading"></a></h2>
+<p>To build your target design on FireSim, you can utilize any of the Chipyard’s included RTL generators (e.g. Rocket Chip).
+• We use a quad-core Rocket Chip with an 16KB 2-way set associative icache &amp; dcache, and a 512KB l2 cache base config.
+• To change the base system configuration, we had to specify new design parameters in TargetConfigs.scala file in the following path.​</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/home/centos/firesim/target-design/chipyard/generators/firechip/src/main/scala/TargetConfigs.Scala
+</pre></div>
+</div>
+<section id="an-example-of-creating-a-target-design-with-64kb-l1i-and-l1d-caches">
+<h3>An example of creating a target design with 64KB L1I and L1D Caches<a class="headerlink" href="#an-example-of-creating-a-target-design-with-64kb-l1i-and-l1d-caches" title="Permalink to this heading"></a></h3>
+<p>We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Precedence of the parameters defined before goess from bottom up. Note that: The default block size is 64Bytes.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>class<span class="w"> </span>FireSimGem5ConfigQuadRocketConfig<span class="w"> </span>extends<span class="w"> </span>Config<span class="o">(</span>
+new<span class="w"> </span>freechips.rocketchip.subsystem.WithL1ICacheWays<span class="o">(</span><span class="m">16</span><span class="o">)</span><span class="w"> </span>++<span class="w">  </span>//<span class="w"> </span>change<span class="w"> </span>rocket<span class="w"> </span>I$
+new<span class="w"> </span>freechips.rocketchip.subsystem.WithL1ICacheSets<span class="o">(</span><span class="m">64</span><span class="o">)</span><span class="w"> </span>++<span class="w">  </span>//<span class="w"> </span>change<span class="w"> </span>rocket<span class="w"> </span>I$
+new<span class="w"> </span>freechips.rocketchip.subsystem.WithL1DCacheWays<span class="o">(</span><span class="m">16</span><span class="o">)</span><span class="w"> </span>++<span class="w">  </span>//<span class="w"> </span>change<span class="w"> </span>rocket<span class="w"> </span>D$
+new<span class="w"> </span>freechips.rocketchip.subsystem.WithL1DCacheSets<span class="o">(</span><span class="m">64</span><span class="o">)</span><span class="w"> </span>++<span class="w">  </span>//<span class="w"> </span>change<span class="w"> </span>rocket<span class="w"> </span>D$
+new<span class="w"> </span>WithDefaultFireSimBridges<span class="w"> </span>++
+new<span class="w"> </span>WithDefaultMemModel<span class="w"> </span>++
+new<span class="w"> </span>WithFireSimConfigTweaks<span class="w"> </span>++
+new<span class="w"> </span>chipyard.QuadRocketConfig<span class="o">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Modify config_build_recipe.yaml, config_build.yaml, &amp; config_runtime.yaml files by adding the following lines.</p></li>
+</ul>
+<p><strong>config_build_receipes.yaml</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Modifying<span class="w"> </span>config_build_recipe.yaml
+firesim_rocket_quadcore_gem5_config:<span class="w"> </span><span class="c1"># This can be any name specified by the user</span>
+DESIGN:<span class="w"> </span>FireSim
+TARGET_CONFIG:<span class="w"> </span>DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks_FireSimGem5Config19QuadRocketConfig
+PLATFORM_CONFIG:<span class="w"> </span>WithAutoILA_F140MHz_BaseF1Config
+deploy_triplet:<span class="w"> </span>null
+post_build_hook:<span class="w"> </span>null
+metasim_customruntimeconfig:<span class="w"> </span>null
+bit_builder_recipe:<span class="w"> </span>bit-builder-recipes/f1.yaml
+</pre></div>
+</div>
+<p><strong>config_build.yaml</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>builds_to_run:
+<span class="w">    </span>-<span class="w"> </span>firesim_rocket_quadcore_gem5_config<span class="w">  </span><span class="c1"># This name must match the name specified in config_build_recipes.yaml</span>
+</pre></div>
+</div>
+<p><strong>config_runtime.yaml</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>run_farm:
+<span class="w">    </span><span class="c1"># run farm hosts to spawn: a mapping from a spec below (which is an EC2</span>
+<span class="w">    </span><span class="c1"># instance type) to the number of instances of the given type that you</span>
+<span class="w">    </span><span class="c1"># want in your runfarm.</span>
+<span class="w">    </span>run_farm_hosts_to_use:
+<span class="w">    </span>-<span class="w"> </span>f1.16xlarge:<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>-<span class="w"> </span>f1.4xlarge:<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>-<span class="w"> </span>f1.2xlarge:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># we want to use f1.2xlarge as the runfarm instance</span>
+<span class="w">    </span>-<span class="w"> </span>m4.16xlarge:<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>-<span class="w"> </span>z1d.3xlarge:<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>-<span class="w"> </span>z1d.6xlarge:<span class="w"> </span><span class="m">0</span>
+<span class="w">    </span>-<span class="w"> </span>z1d.12xlarge:<span class="w"> </span><span class="m">0</span>
+
+target_config:
+<span class="w">    </span>topology:<span class="w"> </span>no_net_config
+<span class="w">    </span>no_net_num_nodes:<span class="w"> </span><span class="m">1</span>
+<span class="w">    </span>link_latency:<span class="w"> </span><span class="m">6405</span>
+<span class="w">    </span>switching_latency:<span class="w"> </span><span class="m">10</span>
+<span class="w">    </span>net_bandwidth:<span class="w"> </span><span class="m">200</span>
+<span class="w">    </span>profile_interval:<span class="w"> </span>-1
+
+<span class="w">    </span><span class="c1"># This references a section from config_hwdb.yaml for fpga-accelerated simulation</span>
+<span class="w">    </span><span class="c1"># or from config_build_recipes.yaml for metasimulation</span>
+<span class="w">    </span><span class="c1"># In homogeneous configurations, use this to set the hardware config deployed</span>
+<span class="w">    </span><span class="c1"># for all simulators</span>
+<span class="w">    </span>default_hw_config:<span class="w"> </span>firesim_rocket_quadcore_gem5_config
+
+workload:
+<span class="w">    </span>workload_name:<span class="w"> </span>gem5-workload.json
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Next, we use golden gate compiler to generate the verilog code from the Chisel-generated RTL code for the AWS AGFI build process.</p></li>
+</ul>
+<p><strong>To move to the golden gate compiler directory, run:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/home/centos/firesim/sim/
+</pre></div>
+</div>
+<p><strong>Run make</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span><span class="nv">DESIGN</span><span class="o">=</span>FireSim<span class="w"> </span><span class="nv">TARGET_CONFIG</span><span class="o">=</span>DDR3FRFCFSLLC4MB_WithDefaultFireSimBridges_WithFireSimTestChipConfigTweaks<span class="w"> </span>_FireSimGem5ConfigQuadRocketConfig<span class="w"> </span><span class="nv">PLATFORM_CONFIG</span><span class="o">=</span>WithAutoILA_F140MHz_BaseF1Config<span class="w"> </span>f1
+</pre></div>
+</div>
+<p><strong>Build the AWS FPGA Image by executing:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>firesim<span class="w"> </span>buildbitstream
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>After a successfull build, update config_hwdb.yaml with the AGFI info.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>firesim_rocket_quadcore_gem5_config:<span class="w"> </span><span class="c1"># Add your AGFI info to config_hwdb.yaml, so they can be deployed during simulation</span>
+<span class="w">    </span>agfi:<span class="w"> </span>agfi-06e876ba9378cc9ff
+<span class="w">    </span>deploy_triplet_override:<span class="w"> </span>null
+<span class="w">    </span>custom_runtime_config:<span class="w"> </span>null
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Then, launch runfarm instance, setup the simulation infrastructure, and run your firesim simulation.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>firesim<span class="w"> </span>launchrunfarm<span class="p">;</span><span class="w"> </span>firesim<span class="w"> </span>infrasetup<span class="p">;</span><span class="w"> </span>firesim<span class="w"> </span>runworkload
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Finally, results can be collected from the following directory.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/home/centos/firesim/results-workload/​​
+</pre></div>
+</div>
+<p>if you need hyperlink, you can use this template:</p>
+<p>firesim website is <a class="reference external" href="https://fires.im/">this</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="staff.html" class="btn btn-neutral float-left" title="People" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 KU Architecture Research Group - 2335 Irving Hill Rd, Lawrence, KS 66045, United States.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

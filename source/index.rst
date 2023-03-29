@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Architecture Reaserch Group's Documentation
+Welcome to KU Architecture Research Group
 =======================================================
 
 .. toctree::
