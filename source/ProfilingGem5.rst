@@ -102,9 +102,11 @@ In this documentation, we describe the steps for running gem5 as a workload on F
 .. •  How much faster can architectural simulations run by tuning system configurations?
 .. • What are the opportunities in accelerating software simulation using hardware accelerators?
 
+Details
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Running gem5 on FireSim
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. * **Neel Patel** - Masters Student, Department of Electrical Engineering and Computer Science, University of Kansas
 The main idea is to execute gem5 as a workload on FireSim to validate our hypothesis that gem5 is largely imparted by the size of the l1 cache. 
@@ -134,7 +136,7 @@ Steps to run gem5 on FireSim
 
 
 Set up the AWS FireSim environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We use a Z1d.2xlarge FireSim manager instance. Check out the FireSim documentation for more details.
 https://docs.fires.im/en/stable/Initial-Setup/index.html
 
@@ -143,13 +145,13 @@ https://docs.fires.im/en/stable/Initial-Setup/index.html
     mosh --ssh"=ssh -i firesim.pem" username@ip_addr #username is centos, ip_addr is dynamically assigned to the manager instance upon initialization
 
 Build the gem5 binary for RISC-V ISA
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 • Use QEMU to emulate a RISC-V architecture for building the gem5 binary and installing dependencies.
 • Test the compiled binary binary on We use a SiFive HiFive Unleashed developmental board, which natively runs Ubuntu.
 
 Prepare gem5 workload and transfer it to the instance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 • In this step, you should compile your binary (we used Sieve of Erastosthenes) for the gem5 target ISA.
 • Next, transfer your compiled binary to the AWS EC2 F1 instance. We used sftp like this:
 
@@ -163,7 +165,7 @@ Prepare gem5 workload and transfer it to the instance
 
 
 Create FireSim workload using FireMarshal
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 • FireSim requires a .json input file format to define workloads (e.g. gem5) that will run on the target design. FireMarshal is used to manage this process. Check out the FireMarshal documentation for more details. https://firemarshal.readthedocs.io/en/latest/index.html.
 • This produces the following .json file in the /home/centos/firesim/deploy/workload directory, which defines the gem5 workload, as well as its output
 
@@ -183,7 +185,7 @@ Create FireSim workload using FireMarshal
 
 
 Build our target design and Modify parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 To build your target design on FireSim, you can utilize any of the Chipyard's included RTL generators (e.g. Rocket Chip).
 
 • We use a quad-core Rocket Chip with an 16KB 2-way set associative icache & dcache, and a 512KB l2 cache base config.
@@ -195,7 +197,7 @@ To build your target design on FireSim, you can utilize any of the Chipyard's in
 
 
 An example of creating a target design with 64KB L1I and L1D Caches
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the TargetConfigs.scala file. Precedence of the parameters defined before goess from bottom up. Note that: The default block size is 64Bytes.
 
 .. code-block:: bash
@@ -309,3 +311,22 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 .. code-block:: bash
 
      cd /home/centos/firesim/results-workload/​​
+
+
+Publications
+^^^^^^^^^^^^^^^^^^^
+Johnson Umeike, Neel Patel, Alex Manley, Amin Mamandipoor, Heechul Yun, Mohammad Alian, "Profiling gem5 Simulator," ISPASS 2023 
+[paper_]
+.. _paper: https://documentcloud.adobe.com/spodintegration/index.html?locale=en-us
+[slides_]
+.. _slides: https://kansas-my.sharepoint.com/:p:/r/personal/m258a886_home_ku_edu/_layouts/15/Doc.aspx?sourcedoc=%7BAF3BD271-FD17-4FB9-9B55-E395AEF4328B%7D&file=Profiling%20an%20Architectural%20Simulator.pptx&action=edit&mobileredirect=true
+
+Personnel
+^^^^^^^^^^^^^
+
+• Johnson Umeike
+• Neel Patel
+• Alex Manley
+• Amin Mamandipoor
+• Heechul Yun
+• Mohammad Alian
