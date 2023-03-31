@@ -316,10 +316,10 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 Publications
 ^^^^^^^^^^^^^^^^^^^
 Johnson Umeike, Neel Patel, Alex Manley, Amin Mamandipoor, Heechul Yun, Mohammad Alian, "Profiling gem5 Simulator," ISPASS 2023 
-[paper_]
-.. _paper: https://documentcloud.adobe.com/spodintegration/index.html?locale=en-us
-[slides_]
-.. _slides: https://kansas-my.sharepoint.com/:p:/r/personal/m258a886_home_ku_edu/_layouts/15/Doc.aspx?sourcedoc=%7BAF3BD271-FD17-4FB9-9B55-E395AEF4328B%7D&file=Profiling%20an%20Architectural%20Simulator.pptx&action=edit&mobileredirect=true
+[paper_
+.. _paper: https://documentcloud.adobe.com/spodintegration/index.html?locale=en-us]
+[slides_
+.. _slides: https://kansas-my.sharepoint.com/:p:/r/personal/m258a886_home_ku_edu/_layouts/15/Doc.aspx?sourcedoc=%7BAF3BD271-FD17-4FB9-9B55-E395AEF4328B%7D&file=Profiling%20an%20Architectural%20Simulator.pptx&action=edit&mobileredirect=true]
 
 Personnel
 ^^^^^^^^^^^^^
