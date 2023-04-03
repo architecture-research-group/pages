@@ -322,7 +322,7 @@ Publications
 .. _slides: http://arg.ku.edu/build/html/ProfilingGem5.html#publications
 
 • FireSim and Chipyard User and Developer Workshop at ASPLOS 2023 [website_]
-    Title: Profiling an Architectural Simulator (Using Firesim to Profile gem5) [presentation_]
+Title: Profiling an Architectural Simulator (Using Firesim to Profile gem5) [presentation_]
 
 .. _website: https://fires.im/workshop-2023/
 
