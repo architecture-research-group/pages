@@ -315,30 +315,42 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 
 Publications
 ^^^^^^^^^^^^^^^^^^^
-Johnson Umeike, Neel Patel, Alex Manley, Amin Mamandipoor, Heechul Yun, Mohammad Alian, "Profiling gem5 Simulator," ISPASS 2023 [paper_] [slides_]
+• Johnson Umeike, Neel Patel, Alex Manley, Amin Mamandipoor, Heechul Yun, Mohammad Alian, "Profiling gem5 Simulator," ISPASS 2023 [paper_] [slides_]
 
 .. _paper: https://kansas-my.sharepoint.com/personal/m258a886_home_ku_edu/Documents/Alian%20Research%20Group/docs/papers/2023/ispass-gem5_profiling/ISPASS_2023_Profiling_gem5_Simulator_Final_Paper.pdf?CT=1680301153189&OR=ItemsView
 
 .. _slides: http://arg.ku.edu/build/html/ProfilingGem5.html#publications
 
+• FireSim and Chipyard User and Developer Workshop at ASPLOS 2023 [website_]
+    Title: Profiling an Architectural Simulator (Using Firesim to Profile gem5) [presentation_]
+
+.. _website: https://fires.im/workshop-2023/
+
+.. _presentation: https://kansas-my.sharepoint.com/:p:/r/personal/m258a886_home_ku_edu/_layouts/15/Doc.aspx?sourcedoc=%7B1803B96C-BA2A-4194-B515-C96B19922A00%7D&file=Profiling%20an%20Architectural%20Simulator.pptx&action=edit&mobileredirect=true
+
 Personnel
 ^^^^^^^^^^^^^
 
-• Johnson Umeike (Lead Author Student)
-• Neel Patel (Co-Author Student)
-• Alex Manley (Co-Author Student)
-• Amin Mamandipoor (Co-Author Student)
-• Heechul Yun (KU Collaborator)
-• Mohammad Alian (Principal Investigator)
+• Johnson_ Umeike (Lead Author Student)
 
-.. _Johnson Umeike: https://UmeikeJohnson.github.io/
+• Neel_ Patel (Co-Author Student)
 
-.. _Neel Patel: https://people.eecs.ku.edu/~n869p538/
+• Alex_ Manley (Co-Author Student) 
 
-.. _Alex Manley: https://amanley97.github.io/
+• Amin_ Mamandipoor (Co-Author Student) 
 
-.. _Amin Mamandipoor: https://amin-mamandi.github.io/
+• Heechul_ Yun (KU Collaborator) 
 
-.. _Heechul Yun: https://www.ittc.ku.edu/~heechul/
+• Mohammad_ Alian (Principal Investigator)
 
-.. _Mohammad Alian: https://alian-eecs.ku.edu/
+.. _Johnson: https://UmeikeJohnson.github.io/
+
+.. _Neel: https://people.eecs.ku.edu/~n869p538/
+
+.. _Alex: https://amanley97.github.io/
+
+.. _Amin: http://people.ku.edu/~a972m888/
+
+.. _Heechul: https://www.ittc.ku.edu/~heechul/
+
+.. _Mohammad: https://alian-eecs.ku.edu/
