@@ -324,26 +324,26 @@ Johnson Umeike, Neel Patel, Alex Manley, Amin Mamandipoor, Heechul Yun, Mohammad
 Personnel
 ^^^^^^^^^^^^^
 
-• Johnson Umeike (Lead Author Student) [website_] 
+• Johnson Umeike (Lead Author Student) [website1_] 
 
-• Neel Patel (Co-Author Student) [website_]
+• Neel Patel (Co-Author Student) [website2_]
 
-• Alex Manley (Co-Author Student) [website_]
+• Alex Manley (Co-Author Student) [website3_]
 
-• Amin Mamandipoor (Co-Author Student) [website_]
+• Amin Mamandipoor (Co-Author Student) [website4_]
 
-• Heechul Yun (KU Collaborator) [website_]
+• Heechul Yun (KU Collaborator) [website5_]
 
-• Mohammad Alian (Principal Investigator) [website_]
+• Mohammad Alian (Principal Investigator) [website6_]
 
-.. _website: https://UmeikeJohnson.github.io/
+.. _website1: https://UmeikeJohnson.github.io/
 
-.. _website: https://people.eecs.ku.edu/~n869p538/
+.. _website2: https://people.eecs.ku.edu/~n869p538/
 
-.. _website: https://amanley97.github.io/
+.. _website3: https://amanley97.github.io/
 
-.. _website: https://amin-mamandi.github.io/
+.. _website4: https://amin-mamandi.github.io/
 
-.. _website: https://www.ittc.ku.edu/~heechul/
+.. _website5: https://www.ittc.ku.edu/~heechul/
 
-.. _website: https://alian-eecs.ku.edu/
+.. _website6: https://alian-eecs.ku.edu/
