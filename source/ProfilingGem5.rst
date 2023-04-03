@@ -322,7 +322,6 @@ Publications
 .. _slides: http://arg.ku.edu/build/html/ProfilingGem5.html#publications
 
 • FireSim and Chipyard User and Developer Workshop at ASPLOS 2023 [website_]
-    
     Title: Profiling an Architectural Simulator (Using Firesim to Profile gem5) [presentation_]
 
 .. _website: https://fires.im/workshop-2023/
@@ -332,7 +331,7 @@ Publications
 Personnel
 ^^^^^^^^^^^^^
 
-• 'Johnson Umeike'_ (Lead Author Student)
+• Johnson_ Umeike (Lead Author Student)
 
 • Neel_ Patel (Co-Author Student)
 
@@ -344,7 +343,7 @@ Personnel
 
 • Mohammad_ Alian (Principal Investigator)
 
-.. _'Johnson Umeike': https://UmeikeJohnson.github.io/
+.. _Johnson: https://UmeikeJohnson.github.io/
 
 .. _Neel: https://people.eecs.ku.edu/~n869p538/
 
