@@ -321,40 +321,36 @@ Publications
 
 .. _slides: http://arg.ku.edu/build/html/ProfilingGem5.html#publications
 
-:ref:'slides'
-
 • FireSim and Chipyard User and Developer Workshop at ASPLOS 2023 [website_]
-  Presentation Title: Profiling an Architectural Simulator (Using Firesim to Profile gem5) [slides_]
+  Title: Profiling an Architectural Simulator (Using Firesim to Profile gem5) [presenatation_]
 
 .. _website: https://fires.im/workshop-2023/
 
-.. _slides: https://kansas-my.sharepoint.com/:p:/r/personal/m258a886_home_ku_edu/_layouts/15/Doc.aspx?sourcedoc=%7B1803B96C-BA2A-4194-B515-C96B19922A00%7D&file=Profiling%20an%20Architectural%20Simulator.pptx&action=edit&mobileredirect=true
-
-:ref:'slides'
+.. _presentation: https://kansas-my.sharepoint.com/:p:/r/personal/m258a886_home_ku_edu/_layouts/15/Doc.aspx?sourcedoc=%7B1803B96C-BA2A-4194-B515-C96B19922A00%7D&file=Profiling%20an%20Architectural%20Simulator.pptx&action=edit&mobileredirect=true
 
 Personnel
 ^^^^^^^^^^^^^
 
-• Johnson Umeike (Lead Author Student) [website_]
+• Johnson_ Umeike (Lead Author Student)
 
-• Neel Patel (Co-Author Student) [website_]
+• Neel_ Patel (Co-Author Student)
 
-• Alex Manley (Co-Author Student) [website_]
+• Alex_ Manley (Co-Author Student) 
 
-• Amin Mamandipoor (Co-Author Student) [website_]
+• Amin_ Mamandipoor (Co-Author Student) 
 
-• Heechul Yun (KU Collaborator) [website_]
+• Heechul_ Yun (KU Collaborator) 
 
-• Mohammad Alian (Principal Investigator) [website_]
+• Mohammad_ Alian (Principal Investigator)
 
-.. _website: https://UmeikeJohnson.github.io/
+.. _Johnson: https://UmeikeJohnson.github.io/
 
-.. _website: https://people.eecs.ku.edu/~n869p538/
+.. _Neel: https://people.eecs.ku.edu/~n869p538/
 
-.. _website: https://amanley97.github.io/
+.. _Alex: https://amanley97.github.io/
 
-.. _website: http://people.ku.edu/~a972m888/
+.. _Amin: http://people.ku.edu/~a972m888/
 
-.. _website: https://www.ittc.ku.edu/~heechul/
+.. _Heechul: https://www.ittc.ku.edu/~heechul/
 
-.. _website: https://alian-eecs.ku.edu/
+.. _Mohammad: https://alian-eecs.ku.edu/
