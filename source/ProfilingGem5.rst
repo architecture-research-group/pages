@@ -325,10 +325,15 @@ Personnel
 ^^^^^^^^^^^^^
 
 • Johnson Umeike (Lead Author Student) [website_] 
+
 • Neel Patel (Co-Author Student) [website_]
+
 • Alex Manley (Co-Author Student) [website_]
+
 • Amin Mamandipoor (Co-Author Student) [website_]
+
 • Heechul Yun (KU Collaborator) [website_]
+
 • Mohammad Alian (Principal Investigator) [website_]
 
 .. _website: https://UmeikeJohnson.github.io/
