@@ -315,35 +315,42 @@ We specify a quad-core rocket chip with a 64KB L1 icache and dcache in the Targe
 
 Publications
 ^^^^^^^^^^^^^^^^^^^
-Johnson Umeike, Neel Patel, Alex Manley, Amin Mamandipoor, Heechul Yun, Mohammad Alian, "Profiling gem5 Simulator," ISPASS 2023 [paper_] [slides_]
+• Johnson Umeike, Neel Patel, Alex Manley, Amin Mamandipoor, Heechul Yun, Mohammad Alian, "Profiling gem5 Simulator," ISPASS 2023 [paper_] [slides_]
 
 .. _paper: https://kansas-my.sharepoint.com/personal/m258a886_home_ku_edu/Documents/Alian%20Research%20Group/docs/papers/2023/ispass-gem5_profiling/ISPASS_2023_Profiling_gem5_Simulator_Final_Paper.pdf?CT=1680301153189&OR=ItemsView
 
 .. _slides: http://arg.ku.edu/build/html/ProfilingGem5.html#publications
+
+• FireSim and Chipyard User and Developer Workshop at ASPLOS 2023 [website_]
+  Presentation Title: Profiling an Architectural Simulator (Using Firesim to Profile gem5) [slides_]
+
+.. _website: https://fires.im/workshop-2023/
+
+.. _slides: https://kansas-my.sharepoint.com/:p:/r/personal/m258a886_home_ku_edu/_layouts/15/Doc.aspx?sourcedoc=%7B1803B96C-BA2A-4194-B515-C96B19922A00%7D&file=Profiling%20an%20Architectural%20Simulator.pptx&action=edit&mobileredirect=true
 
 Personnel
 ^^^^^^^^^^^^^
 
 • Johnson Umeike (Lead Author Student) [website_]
 
-.. _website: https://UmeikeJohnson.github.io/
-
 • Neel Patel (Co-Author Student) [website_]
-
-.. _website: https://people.eecs.ku.edu/~n869p538/
 
 • Alex Manley (Co-Author Student) [website_]
 
-.. _website: https://amanley97.github.io/
-
 • Amin Mamandipoor (Co-Author Student) [website_]
-
-.. _website: https://amin-mamandi.github.io/
 
 • Heechul Yun (KU Collaborator) [website_]
 
-.. _website: https://www.ittc.ku.edu/~heechul/
-
 • Mohammad Alian (Principal Investigator) [website_]
+
+.. _website: https://UmeikeJohnson.github.io/
+
+.. _website: https://people.eecs.ku.edu/~n869p538/
+
+.. _website: https://amanley97.github.io/
+
+.. _website: http://people.ku.edu/~a972m888/
+
+.. _website: https://www.ittc.ku.edu/~heechul/
 
 .. _website: https://alian-eecs.ku.edu/
