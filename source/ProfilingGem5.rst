@@ -319,14 +319,26 @@ Johnson Umeike, Neel Patel, Alex Manley, Amin Mamandipoor, Heechul Yun, Mohammad
 
 .. _paper: https://kansas-my.sharepoint.com/personal/m258a886_home_ku_edu/Documents/Alian%20Research%20Group/docs/papers/2023/ispass-gem5_profiling/ISPASS_2023_Profiling_gem5_Simulator_Final_Paper.pdf?CT=1680301153189&OR=ItemsView
 
-.. _slides: https://kansas-my.sharepoint.com/:p:/r/personal/m258a886_home_ku_edu/_layouts/15/Doc.aspx?sourcedoc=%7B1803B96C-BA2A-4194-B515-C96B19922A00%7D&file=Profiling%20an%20Architectural%20Simulator.pptx&action=edit&mobileredirect=true
+.. _slides: http://arg.ku.edu/build/html/ProfilingGem5.html#publications
 
 Personnel
 ^^^^^^^^^^^^^
 
-• Johnson Umeike
-• Neel Patel
-• Alex Manley
-• Amin Mamandipoor
-• Heechul Yun
-• Mohammad Alian
+• Johnson Umeike (Lead Author Student) [website]
+
+.. _website: https://UmeikeJohnson.github.io/
+• Neel Patel (Co-Author Student) [website]
+
+.. _website: https://people.eecs.ku.edu/~n869p538/
+• Alex Manley (Co-Author Student) [website]
+
+.. _website: https://amanley97.github.io/
+• Amin Mamandipoor (Co-Author Student) [website]
+
+.. _website: https://amin-mamandi.github.io/
+• Heechul Yun (KU Collaborator) [website]
+
+.. _website: https://www.ittc.ku.edu/~heechul/
+• Mohammad Alian (Principal Investigator) [website]
+
+.. _website: https://alian-eecs.ku.edu/
