@@ -331,14 +331,14 @@ Personnel
 • Heechul Yun (KU Collaborator)
 • Mohammad Alian (Principal Investigator)
 
-.. _Johnson Umeike: https://UmeikeJohnson.github.io/
+.. '_Johnson Umeike': https://UmeikeJohnson.github.io/
 
-.. _Neel Patel: https://people.eecs.ku.edu/~n869p538/
+.. '_Neel Patel': https://people.eecs.ku.edu/~n869p538/
 
-.. _Alex Manley: https://amanley97.github.io/
+.. '_Alex Manley': https://amanley97.github.io/
 
-.. _Amin Mamandipoor: https://amin-mamandi.github.io/
+.. '_Amin Mamandipoor': https://amin-mamandi.github.io/
 
-.. _Heechul Yun: https://www.ittc.ku.edu/~heechul/
+.. '_Heechul Yun': https://www.ittc.ku.edu/~heechul/
 
-.. _Mohammad Alian: https://alian-eecs.ku.edu/
+.. '_Mohammad Alian': https://alian-eecs.ku.edu/
