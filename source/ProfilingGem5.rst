@@ -326,7 +326,7 @@ Publications
 
 .. _website: https://fires.im/workshop-2023/
 
-.. _presentation: https://kansas-my.sharepoint.com/:p:/r/personal/m258a886_home_ku_edu/_layouts/15/Doc.aspx?sourcedoc=%7B1803B96C-BA2A-4194-B515-C96B19922A00%7D&file=Profiling%20an%20Architectural%20Simulator.pptx&action=edit&mobileredirect=true
+.. _presentation: https://kansas-my.sharepoint.com/:p:/r/personal/m258a886_home_ku_edu/_layouts/15/Doc.aspx?sourcedoc=%7B0522D27E-D28B-43E5-9418-512BBB6F9D7C%7D&file=Profiling%20an%20Architectural%20Simulator%20-%20ASPLOS%202023%20Slides.pptx&action=edit&mobileredirect=true
 
 Personnel
 ^^^^^^^^^^^^^
