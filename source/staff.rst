@@ -43,33 +43,53 @@ Graduate Students
     :align: left
     :alt: Neel Patel
 
-* **Neel Patel** - Masters Student, Department of Electrical Engineering and Computer Science, University of Kansas
+* **Neel Patel** - PhD Student, Department of Electrical Engineering and Computer Science, University of Kansas
    I am a graduate research assistant at the Institute for Information Sciences at KU. My current research interests include distrubuted systems, warehouse-scale computing, and applications of data center technologies.
    I am currently pursuing my M.S. in Computer Science under the advisement of Professor Mohammad Alian.
    Currently, I am supported by KU's Undergraduate Research Fellows Program.
 
-Undergraduate Students
-~~~~~~~~~~~~~~~~~~~~~~~~~
-.. image:: img/alex.jpg
-    :width: 200px
-    :align: left
-    :alt: Alex Manley
-    
-* **Alex Manley** - Undergraduate Student, Department of Electrical Engineering and Computer Science, University of Kansas
-Alex Manley is currently an Undergraduate Computer Engineering student who has worked with Dr. Mohammad Alian for almost 2.5 years. While he will be completing his Bachelors in May 2023, he intends to return to the University of Kansas in the Fall to complete a Masters in Computer Engineering. He is skilled in Programming Languages, such as C++, C, Python, Bash, and VHDL; has experience with software like Xilinx Vivado Suite, Gem5, QEMU, and Linux; and has worked with hardware platforms including x86, ARM, RISC-V, and FPGAs. Through the application of his skills and research experience, he is currently an active member of the gem5-acceleration, AxDIMM, and Block Memory Controller projects. He is interested in Computer Architecture and Hardware Design and you can view more information about him on his website: amanley97.github.io!
+.. Undergraduate Students
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. image:: img/Quinn.png
     :width: 200px
     :align: left
     :alt: Derrick Quinn
 
-* **Derrick Quinn** - Undergraduate Student, Department of Electrical Engineering and Computer Science, University of Kansas
+* **Derrick Quinn** - PhD Student, Department of Electrical Engineering and Computer Science, University of Kansas
     I will be completing my undergraduate studies at the University of Kansas in May 2023 with a B.S. in Mathematics and Computer Science, and I am excited to be starting my Ph.D. program in Computer Science at KU this fall. My primary research interests lie in the fields of Computer Architecture and Accelerated Computing/HPC, with current research projects in Accelerated HPC Networking, as well as in the Modeling of Accelerated Systems. My language and platform of choice is Rust on Linux or MacOS, though I am also proficient in other programming languages such as C, Python, and shell scripting.
 
-.. image:: img/Staudacher.JPG
+.. image:: img/Nouri.jpg
     :width: 200px
     :align: left
-    :alt: Luke Staudacher
+    :alt: Mohammad Nouri
 
-* **Luke Staudacher** - Undergraduate Student, Department of Electrical Engineering and Computer Science, University of Kansas
-Luke Staudacher is a Computer Engineering undergraduate at the University of Kansas with experience in backend web development, robotics, and electrical system design. He is a member of the SELF program and Eta Kapa Nu and currently works on the near memory networking project at I2S under Dr. Mohamad Alian. Luke is proficient in C/C++, Java, Python, Verilog, VHDL, Linux, and Windows, and has worked with CAD software such as Cadence Design Suite, KiCAD, and Solidworks. He is passionate about pursuing a career in technology and making meaningful contributions to the field.
+* **Mohammad Nouri** - PhD Student, Department of Electrical Engineering and Computer Science, University of Kansas
+    Mohammad's primary research interests revolve around computer architecture and machine learning. Also, I have gained valuable experience in the field of machine vision, which involves developing algorithms and techniques to enable computers to understand and interpret visual data.
+    He is driven by a desire to make significant contributions to academia and industry. He is eager to explore new avenues within computer architecture and machine learning, constantly seeking opportunities to expand his knowledge and expertise.
+
+.. image:: img/Huy.jpg
+    :width: 200px
+    :align: left
+    :alt: Huy Tran
+    
+* **Huy Tran** - PhD Student, Department of Electrical Engineering and Computer Science, University of Kansas
+    He is currently a first-year PhD Computer Science student in the EECS department at KU.  He completed my B.S. and M.S. degrees at Penn State and UC Riverside, respectively. His research interest is computer architecture and systems with a concentration on computer system simulation, profiling/sampling workload, and performance/power models. 
+    His current research focuses on developing standard sampling methodologies for scale-out applications.
+    
+.. image:: img/alex.jpg
+    :width: 200px
+    :align: left
+    :alt: Alex Manley
+    
+* **Alex Manley** - Masters Student, Department of Electrical Engineering and Computer Science, University of Kansas
+Alex Manley is currently an Undergraduate Computer Engineering student who has worked with Dr. Mohammad Alian for almost 2.5 years. While he will be completing his Bachelors in May 2023, he intends to return to the University of Kansas in the Fall to complete a Masters in Computer Engineering. He is skilled in Programming Languages, such as C++, C, Python, Bash, and VHDL; has experience with software like Xilinx Vivado Suite, Gem5, QEMU, and Linux; and has worked with hardware platforms including x86, ARM, RISC-V, and FPGAs. Through the application of his skills and research experience, he is currently an active member of the gem5-acceleration, AxDIMM, and Block Memory Controller projects. He is interested in Computer Architecture and Hardware Design and you can view more information about him on his website: amanley97.github.io!
+
+.. image:: img/John.jpg
+    :width: 200px
+    :align: left
+    :alt: John Salihu
+    
+* **John Salihu** - Masters Student, Department of Electrical Engineering and Computer Science, University of Kansas
+    John is an embedded systems engineer. He loves designing Printed Circuit Boards in Altium, Writing the firmware for various microcontrollers and writing VHDL code for FPGAs.
+    He has contributed to the development of diverse electronic products, including intercom systems and smart monitoring devices. With a commitment to continuous improvement, I actively participate in code reviews, unit tests, and end-to-end feature tests to deliver reliable and high-performance firmware solutions.
