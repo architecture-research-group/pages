@@ -65,6 +65,8 @@ Graduate Students
     :alt: Mohammad Nouri
 
 * **Mohammad Nouri** - PhD Student, Department of Electrical Engineering and Computer Science, University of Kansas
+    Mohammad's primary research interests revolve around computer architecture and machine learning. Also, I have gained valuable experience in the field of machine vision, which involves developing algorithms and techniques to enable computers to understand and interpret visual data.
+    He is driven by a desire to make significant contributions to academia and industry. He is eager to explore new avenues within computer architecture and machine learning, constantly seeking opportunities to expand his knowledge and expertise.
 
 .. image:: img/Huy.jpg
     :width: 200px
@@ -72,8 +74,9 @@ Graduate Students
     :alt: Huy Tran
     
 * **Huy Tran** - PhD Student, Department of Electrical Engineering and Computer Science, University of Kansas
-
-
+    He is currently a first-year PhD Computer Science student in the EECS department at KU.  He completed my B.S. and M.S. degrees at Penn State and UC Riverside, respectively. His research interest is computer architecture and systems with a concentration on computer system simulation, profiling/sampling workload, and performance/power models. 
+    His current research focuses on developing standard sampling methodologies for scale-out applications.
+    
 .. image:: img/alex.jpg
     :width: 200px
     :align: left
@@ -88,3 +91,5 @@ Alex Manley is currently an Undergraduate Computer Engineering student who has w
     :alt: John Salihu
     
 * **John Salihu** - Masters Student, Department of Electrical Engineering and Computer Science, University of Kansas
+    John is an embedded systems engineer. He loves designing Printed Circuit Boards in Altium, Writing the firmware for various microcontrollers and writing VHDL code for FPGAs.
+    He has contributed to the development of diverse electronic products, including intercom systems and smart monitoring devices. With a commitment to continuous improvement, I actively participate in code reviews, unit tests, and end-to-end feature tests to deliver reliable and high-performance firmware solutions.
