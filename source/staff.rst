@@ -10,6 +10,7 @@ Principal Investigator
 * **Mohammad Alian** - Assistant Professor, Department of Electrical Engineering and Computer Science, University of Kansas
     Mohammad Alian is an Assistant Professor at the EECS department of the University of Kansas. Before joining KU, he completed his Ph.D. and MS at UIUC and UW-Madison, respectively. At UIUC, he developed dist-gem5 and MCN. dist-gem5 is part of the official gem5 release and MCN is the precursor to the development of Samsung's AxDIMM. His team at KU got second place Samsung open innovation contest for AxDIMM technology. Four best paper candidacies have recognized his research in top computer architecture conferences, including MICRO 2018 and HPCA 2017, and an honorable mention in IEEE Micro Top Picks 2017. He is a co-PIs of the SRC/DARPA JUMP 2.0 ACE Center for Evolvable Computing aiming at transforming the distributed computing of the next decade. Mohammad's research explores opportunities in the intersection of computer architecture and networking to shape the future of data centeric computing.
 
+
 Graduate Students
 ~~~~~~~~~~~~~~~~~~~
 .. image:: img/amin.jpg
@@ -20,6 +21,7 @@ Graduate Students
 * **Amin Mamandipoor** - PhD Student, Department of Electrical Engineering and Computer Science, University of Kansas
     Amin is currently pursuing his second-year Ph.D. in the EECS department at KU. He completed his B.Sc. and M.Sc. degrees in Computer Engineering from the University of Tabriz in 2018 and 2022, respectively. His research interests span across computer systems design, with a primary focus on computer architecture, datacenter networking, and operating systems. Currently, he is involved in a project that focuses on developing near-memory processing accelerators. He is skilled in several programming languages and software tools, including C/C++, Java, Python, Verilog, VHDL, as well as design software such as Cadence Virtuoso and Xilinx Vivado.
     Here is Amin's personal website_.
+    
 .. _website: https://amin-mamandi.github.io/
 
 .. image:: img/johnson.png
@@ -83,7 +85,7 @@ Graduate Students
     :alt: Alex Manley
     
 * **Alex Manley** - Masters Student, Department of Electrical Engineering and Computer Science, University of Kansas
-Alex Manley is currently an Undergraduate Computer Engineering student who has worked with Dr. Mohammad Alian for almost 2.5 years. While he will be completing his Bachelors in May 2023, he intends to return to the University of Kansas in the Fall to complete a Masters in Computer Engineering. He is skilled in Programming Languages, such as C++, C, Python, Bash, and VHDL; has experience with software like Xilinx Vivado Suite, Gem5, QEMU, and Linux; and has worked with hardware platforms including x86, ARM, RISC-V, and FPGAs. Through the application of his skills and research experience, he is currently an active member of the gem5-acceleration, AxDIMM, and Block Memory Controller projects. He is interested in Computer Architecture and Hardware Design and you can view more information about him on his website: amanley97.github.io!
+    Alex Manley is currently an Undergraduate Computer Engineering student who has worked with Dr. Mohammad Alian for almost 2.5 years. While he will be completing his Bachelors in May 2023, he intends to return to the University of Kansas in the Fall to complete a Masters in Computer Engineering. He is skilled in Programming Languages, such as C++, C, Python, Bash, and VHDL; has experience with software like Xilinx Vivado Suite, Gem5, QEMU, and Linux; and has worked with hardware platforms including x86, ARM, RISC-V, and FPGAs. Through the application of his skills and research experience, he is currently an active member of the gem5-acceleration, AxDIMM, and Block Memory Controller projects. He is interested in Computer Architecture and Hardware Design and you can view more information about him on his website: amanley97.github.io!
 
 .. image:: img/John.jpg
     :width: 200px

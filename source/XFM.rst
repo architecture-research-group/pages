@@ -1,3 +1,5 @@
+.. title:: XFM
+=======
 Accelerating Software Defined Far Memory
 ==================
 

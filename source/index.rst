@@ -40,6 +40,8 @@ Project Catalog
    
    ProfilingGem5
    XFM
+
+=======
    .. Project3
    .. Project4
    .. Project5

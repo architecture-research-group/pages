@@ -39,9 +39,5 @@ Project Catalog
    :maxdepth: 2
    
    ProfilingGem5
-   .. Project2
-   .. Project3
-   .. Project4
-   .. Project5
-   .. Project6
-   .. Project7
+   XFM
+
