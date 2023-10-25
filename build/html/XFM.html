@@ -47,19 +47,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ProfilingGem5.html">Profiling an Architectural Simulator</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Accelerating Software Defined Far Memory</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#details">Details</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#publications">Publications:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#check-list-meta-information">Check-List (meta-information):</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-dependencies">Hardware dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#results">Results:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#evaluation-instructions">Evaluation instructions:</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#check-list-eta-information">Check-List (eta-information):</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hardware-dependencies">Hardware dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Publications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#publications">Publications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#personnel">Personnel</a></li>
 </ul>
 </li>
@@ -101,25 +96,8 @@ of DRAM between the CPU and near-memory accelerator. XFM
 parallelizes near-memory accelerator accesses with row refreshes
 and removes the memory interference caused by SFM swap ins and
 outs.</p>
-</section>
-<section id="details">
-<h2>Details<a class="headerlink" href="#details" title="Link to this heading"></a></h2>
-<section id="publications">
-<h3>Publications:<a class="headerlink" href="#publications" title="Link to this heading"></a></h3>
-<ul class="simple">
-<li><p>Neel Patel, Amin Mamandipoor, Derrick Quinn, Mohammad Alian, “XFM: Accelerated Software-Defined Far Memory” MICRO 2023 [<a class="reference external" href="?">paper</a>] [<a class="reference external" href="?">slides</a>]</p></li>
-</ul>
-</section>
-<section id="results">
-<h3>Results:<a class="headerlink" href="#results" title="Link to this heading"></a></h3>
-<p>XFM sensitivity analyses can be reproduced using scripts compatible with the CM reproducibility project. The results include compression ratios
-achievable by XFM for different memory configurations, and an evaluation of contention between SPEC workloads and corunning (de)compression tasks.</p>
-</section>
-</section>
-<section id="evaluation-instructions">
-<h2>Evaluation instructions:<a class="headerlink" href="#evaluation-instructions" title="Link to this heading"></a></h2>
-<section id="check-list-eta-information">
-<h3>Check-List (eta-information):<a class="headerlink" href="#check-list-eta-information" title="Link to this heading"></a></h3>
+<section id="check-list-meta-information">
+<h3>Check-List (meta-information):<a class="headerlink" href="#check-list-meta-information" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Algorithm:</strong> Model of the XFM Memory Module and Sensitivity Analyses</p></li>
 <li><p><strong>Program:</strong>  SPEC 2017, Licensed Benchmark Suite</p></li>
@@ -149,9 +127,14 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
 <p>Instructions for each experiment are provided in each subdirectory of the repository.
 Also, scripts for running each experiment are provided as bash shell scripts.</p>
 </section>
+<section id="results">
+<h3>Results:<a class="headerlink" href="#results" title="Link to this heading"></a></h3>
+<p>XFM sensitivity analyses can be reproduced using scripts compatible with the CM reproducibility project. The results include compression ratios
+achievable by XFM for different memory configurations, and an evaluation of contention between SPEC workloads and corunning (de)compression tasks.</p>
 </section>
-<section id="id1">
-<h2>Publications<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+</section>
+<section id="publications">
+<h2>Publications<a class="headerlink" href="#publications" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Neel Patel, Amin Mamandipoor, Derrick Quinn, Mohammad Alian, “XFM: Accelerated Software-Defined Far Memory,” MICRO 2023 [<a class="reference external" href="?">paper</a>] [<a class="reference external" href="?">slides</a>]</p></li>
 </ul>
