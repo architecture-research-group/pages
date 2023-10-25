@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>XFM &mdash; Architecture Research Group 1.0.0 documentation</title>
+  <title>Accelerating Software Defined Far Memory &mdash; Architecture Research Group 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -28,11 +27,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Architecture Research Group
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Architecture Research Group
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -43,10 +46,16 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ProfilingGem5.html">Profiling an Architectural Simulator</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#details">Details</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#publications">Publications:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#results">Results:</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Accelerating Software Defined Far Memory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#check-list-meta-information">Check-List (meta-information):</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-dependencies">Hardware dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#publications">Publications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#personnel">Personnel</a></li>
 </ul>
 </li>
 </ul>
@@ -64,8 +73,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">XFM</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Accelerating Software Defined Far Memory</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/XFM.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,8 +84,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h1>
+  <section id="accelerating-software-defined-far-memory">
+<h1>Accelerating Software Defined Far Memory<a class="headerlink" href="#accelerating-software-defined-far-memory" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>XFM (Accelerated Software Defined Far Memory) is a near-memory accelerated
 SFM architecture, which exploits
 the coldness of data during SFM-initiated swap ins and outs. XFM
@@ -85,22 +96,57 @@ of DRAM between the CPU and near-memory accelerator. XFM
 parallelizes near-memory accelerator accesses with row refreshes
 and removes the memory interference caused by SFM swap ins and
 outs.</p>
-</section>
-<section id="details">
-<h1>Details<a class="headerlink" href="#details" title="Permalink to this heading"></a></h1>
-<section id="publications">
-<h2>Publications:<a class="headerlink" href="#publications" title="Permalink to this heading"></a></h2>
+<section id="check-list-meta-information">
+<h3>Check-List (meta-information):<a class="headerlink" href="#check-list-meta-information" title="Link to this heading"></a></h3>
 <ul class="simple">
-<li><p>Neel Patel, Amin Mamandipoor, Derrick Quinn, Mohammad Alian, “XFM: Accelerated Software-Defined Far Memory” MICRO 2023 [<a href="#id1"><span class="problematic" id="id2">paper_</span></a>] [<a href="#id3"><span class="problematic" id="id4">slides_</span></a>]</p></li>
+<li><p><strong>Algorithm:</strong> Model of the XFM Memory Module and Sensitivity Analyses</p></li>
+<li><p><strong>Program:</strong>  SPEC 2017, Licensed Benchmark Suite</p></li>
+<li><p><strong>Compilation:</strong> gcc 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04)</p></li>
+<li><p><strong>Run-time environment:</strong> Tested on Ubuntu 18.04</p></li>
+<li><p><strong>Hardware:</strong> Intel c6250 Server</p></li>
+<li><p><strong>Output:</strong> Numerical results and plots corresponding to Figures 8, 11, and 12 in the paper.</p></li>
+<li><p><strong>Experiments:</strong> As described in  Section 6 (Multi-Channel Mode) and Section 8 (Evaluation).</p></li>
+<li><p><strong>How much time is needed to prepare workflow (approximately)?:</strong> Less than 10 minutes. Building SPEC 2017 is the most time consuming part.}</p></li>
+<li><p><strong>How much time is needed to complete experiments (approximately)?:</strong> Less than 1 hour for XFM performance profiling tests (figures 8 and 12). Between 2-3 hours to regenerate SPEC (de)compression contention results from figure 11.}</p></li>
+<li><p><strong>Publicly available?:</strong>  <a class="reference external" href="https://github.com/architecture-research-group/XFM-Artifacts.git">https://github.com/architecture-research-group/XFM-Artifacts.git</a></p></li>
+<li><p><strong>Code licenses (if publicly available)?:</strong> MIT</p></li>
+<li><p><strong>Archived (provide DOI)?:</strong> <a class="reference external" href="https://doi.org/10.5281/zenodo.8353767">https://doi.org/10.5281/zenodo.8353767</a></p></li>
 </ul>
 </section>
+<section id="hardware-dependencies">
+<h3>Hardware dependencies<a class="headerlink" href="#hardware-dependencies" title="Link to this heading"></a></h3>
+<p>Some experiments depend on access to a server which can be a multi-core server which can be allocated as a single Intel server (c6220 node) available through cloudlab. This hardware is sufficient to reproduce all results.</p>
+</section>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h3>
+<p>Obtain the code and sub-modules from github:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/neel-patel-1/XFM_MICRO2023.git
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</pre></div>
+</div>
+<p>Instructions for each experiment are provided in each subdirectory of the repository.
+Also, scripts for running each experiment are provided as bash shell scripts.</p>
+</section>
 <section id="results">
-<h2>Results:<a class="headerlink" href="#results" title="Permalink to this heading"></a></h2>
-<p>XFM sensitivity analyses can be reproduced using scripts compatible
-with the CM reproducibility project. The results include compression ratios
-achievable by XFM for different memory configurations, and an evaluation of
-contention between SPEC workloads and corunning (de)compression tasks.</p>
-<p><a class="reference external" href="https://github.com/ctuning/cm-reproduce-research-projects/tree/main/script/reproduce-ieee-acm-micro2023-paper-28">https://github.com/ctuning/cm-reproduce-research-projects/tree/main/script/reproduce-ieee-acm-micro2023-paper-28</a></p>
+<h3>Results:<a class="headerlink" href="#results" title="Link to this heading"></a></h3>
+<p>XFM sensitivity analyses can be reproduced using scripts compatible with the CM reproducibility project. The results include compression ratios
+achievable by XFM for different memory configurations, and an evaluation of contention between SPEC workloads and corunning (de)compression tasks.</p>
+</section>
+</section>
+<section id="publications">
+<h2>Publications<a class="headerlink" href="#publications" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Neel Patel, Amin Mamandipoor, Derrick Quinn, Mohammad Alian, “XFM: Accelerated Software-Defined Far Memory,” MICRO 2023 [<a class="reference external" href="?">paper</a>] [<a class="reference external" href="?">slides</a>]</p></li>
+</ul>
+</section>
+<section id="personnel">
+<h2>Personnel<a class="headerlink" href="#personnel" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://people.eecs.ku.edu/~n869p538/">Neel</a> Patel (Lead Author Student)</p></li>
+<li><p><a class="reference external" href="https://amin-mamandi.github.io/">Amin</a> Mamandipoor (Co-Author Student)</p></li>
+<li><p><a class="reference external" href="https://www.linkedin.com/in/derrick-quinn-2427b717b/">Derrick</a> Quinn (Co-Author Student)</p></li>
+<li><p><a class="reference external" href="https://alian-eecs.ku.edu/">Mohammad</a> Alian (Principal Investigator)</p></li>
+</ul>
 </section>
 </section>
 
