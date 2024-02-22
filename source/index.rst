@@ -40,6 +40,7 @@ Project Catalog
    
    ProfilingGem5
    XFM
+   SmartDIMM
 
 =======
    .. Project3
