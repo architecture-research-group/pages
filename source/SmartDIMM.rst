@@ -82,7 +82,7 @@ Also, scripts for running each experiment are provided as bash shell scripts.
 
 Publications
 ^^^^^^^^^^^^^^^^^^^
-• Neel Patel, Amin Mamandipoor, Mohammad Nouri, Mohammad Alian, "SmartDIMM: In-Memory Acceleration of Upper Layer Protocols" MICRO 2023 [paper_] [slides_]
+• Neel Patel, Amin Mamandipoor, Mohammad Nouri, Mohammad Alian, "SmartDIMM: In-Memory Acceleration of Upper Layer Protocols" HPCA 2024 [paper_] [slides_]
 
 .. _paper: ?
 
@@ -98,7 +98,7 @@ Personnel
 
 • Mohammad_ Nouri (Co-Author Student) 
 
-• Mohammad_ Alian (Principal Investigator)
+• Mohammad__ Alian (Principal Investigator)
 
 
 
@@ -108,5 +108,5 @@ Personnel
 
 .. _Mohammad: https://arg.ku.edu/build/html/staff.html
 
-.. _Mohammad: https://alian-eecs.ku.edu/
+.. __Mohammad: https://alian-eecs.ku.edu/
 
