@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartDIMM: In-Memory Acceleration of Upper Layer Protocols &mdash; Architecture Research Group 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Accelerating Software Defined Far Memory" href="XFM.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Architecture Research Group
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="staff.html">People</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ProfilingGem5.html">Profiling an Architectural Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XFM.html">Accelerating Software Defined Far Memory</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SmartDIMM: In-Memory Acceleration of Upper Layer Protocols</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#check-list-meta-information">Check-List (meta-information):</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-dependencies">Hardware dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#publications">Publications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#personnel">Personnel</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Architecture Research Group</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">SmartDIMM: In-Memory Acceleration of Upper Layer Protocols</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/SmartDIMM.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="smartdimm-in-memory-acceleration-of-upper-layer-protocols">
+<h1>SmartDIMM: In-Memory Acceleration of Upper Layer Protocols<a class="headerlink" href="#smartdimm-in-memory-acceleration-of-upper-layer-protocols" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>There has been significant focus on offloading upper-
+layer network protocols (ULPs) to accelerators located on CPUs
+and SmartNICs. However, restricting accelerator placement to
+these locations limits both the variety of ULPs that can be acceler-
+ated and the overall performance. In particular, it overlooks the
+opportunity to accelerate ULPs running atop a stateful transport
+protocol in the face of high cache contention. That is, at high
+network rates, the frequent DRAM accesses and SmartNIC-CPU
+synchronizations outweigh the benefits of hardware acceleration.
+This work introduces SmartDIMM, which unlocks the opportunity
+for accelerating ULPs running atop stateful transport protocols
+that primarily operate on data stored in DRAM. We prototyped
+SmartDIMM using Samsung’s AxDIMM and implemented end-
+to-end offloading of (de/en)cryption and (de)compression– two
+ULPs widely employed in datacenters. We then compared the
+performance of SmartDIMM with accelerator placements on the
+CPU, SmartNIC, and PCIe cards. Our results demonstrate that
+ULP offloading on SmartDIMM outperforms CPU, SmartNIC
+and PCIe-based offload configurations. In comparison to a
+server executing (de/en)cryption and (de)compression on the
+CPU, SmartDIMM achieves 21.0% to 10.28× higher requests per
+second and 36.3% to 88.9% lower memory bandwidth utilization.</p>
+<section id="check-list-meta-information">
+<h3>Check-List (meta-information):<a class="headerlink" href="#check-list-meta-information" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Algorithm:</strong> SmartDIMM</p></li>
+<li><p><strong>Program:</strong>  Nginx, SmartDIMM-compatible nginx compression module (source provided)</p></li>
+<li><p><strong>Compilation:</strong> gcc 8.4.0 (Ubuntu 8.4.0-3ubuntu2)</p></li>
+<li><p><strong>Run-time environment:</strong> Tested on Ubuntu 20.04</p></li>
+<li><p><strong>Hardware:</strong> Intel c6250 Server</p></li>
+<li><p><strong>Output:</strong> Numerical results and plots corresponding to Figures 8, 11, and 12 in the paper.</p></li>
+<li><p><strong>Experiments:</strong> As described in Sec. VII-B</p></li>
+<li><p><strong>How much time is needed to prepare workflow (approximately)?:</strong> Less than 10 minutes. Building SPEC 2017 is the most time consuming part.}</p></li>
+<li><p><strong>How much time is needed to complete experiments (approximately)?:</strong> Less than 1 hour for XFM performance profiling tests (figures 8 and 12). Between 2-3 hours to regenerate SPEC (de)compression contention results from figure 11.}</p></li>
+<li><p><strong>Publicly available?:</strong>  <a class="reference external" href="https://github.com/architecture-research-group/SmartDIMM_ArtifactEvaluation.git">https://github.com/architecture-research-group/SmartDIMM_ArtifactEvaluation.git</a></p></li>
+<li><p><strong>Code licenses (if publicly available)?:</strong> MIT</p></li>
+<li><p><strong>Archived (provide DOI)?:</strong> <a class="reference external" href="https://doi.org/10.5281/zenodo.10278844">https://doi.org/10.5281/zenodo.10278844</a></p></li>
+</ul>
+</section>
+<section id="hardware-dependencies">
+<h3>Hardware dependencies<a class="headerlink" href="#hardware-dependencies" title="Permalink to this heading"></a></h3>
+<p>Experiments depend on access to cloudlab servers:</p>
+<ul class="simple">
+<li><p>Allocate a cloudlab instance using the genilib script provided in this repo</p></li>
+<li><p>Create a cloudlab account if needed</p></li>
+<li><p>Navigate to Experiments</p></li>
+<li><p>Then Create Experiment Profile,</p></li>
+<li><p>Upload nginx_workload.profile</p></li>
+</ul>
+</section>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h3>
+<p>Obtain the code and sub-modules from github:</p>
+<p>Instructions for each experiment are provided in each subdirectory of the repository.
+Also, scripts for running each experiment are provided as bash shell scripts.</p>
+</section>
+</section>
+<section id="publications">
+<h2>Publications<a class="headerlink" href="#publications" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Neel Patel, Amin Mamandipoor, Mohammad Nouri, Mohammad Alian, “SmartDIMM: In-Memory Acceleration of Upper Layer Protocols” HPCA 2024 [<a class="reference external" href="?">paper</a>] [<a class="reference external" href="?">slides</a>]</p></li>
+</ul>
+</section>
+<section id="personnel">
+<h2>Personnel<a class="headerlink" href="#personnel" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://people.eecs.ku.edu/~n869p538/">Neel</a> Patel (Lead Co-Author Student)</p></li>
+<li><p><a class="reference external" href="https://amin-mamandi.github.io/">Amin</a> Mamandipoor (Lead Co-Author Student)</p></li>
+<li><p><a class="reference external" href="https://arg.ku.edu/build/html/staff.html">Mohammad</a> Nouri (Co-Author Student)</p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">Mohammad__</span></a> Alian (Principal Investigator)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="XFM.html" class="btn btn-neutral float-left" title="Accelerating Software Defined Far Memory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 KU Architecture Research Group - 2335 Irving Hill Rd, Lawrence, KS 66045, United States.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
