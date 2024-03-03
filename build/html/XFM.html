@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accelerating Software Defined Far Memory &mdash; Architecture Research Group 1.0.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=8d563738"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SmartDIMM: In-Memory Acceleration of Upper Layer Protocols" href="SmartDIMM.html" />
     <link rel="prev" title="Profiling an Architectural Simulator" href="ProfilingGem5.html" /> 
 </head>
 
@@ -58,6 +57,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#personnel">Personnel</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="SmartDIMM.html">SmartDIMM: In-Memory Acceleration of Upper Layer Protocols</a></li>
 </ul>
 
         </div>
@@ -85,9 +85,9 @@
            <div itemprop="articleBody">
              
   <section id="accelerating-software-defined-far-memory">
-<h1>Accelerating Software Defined Far Memory<a class="headerlink" href="#accelerating-software-defined-far-memory" title="Link to this heading"></a></h1>
+<h1>Accelerating Software Defined Far Memory<a class="headerlink" href="#accelerating-software-defined-far-memory" title="Permalink to this heading"></a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>XFM (Accelerated Software Defined Far Memory) is a near-memory accelerated
 SFM architecture, which exploits
 the coldness of data during SFM-initiated swap ins and outs. XFM
@@ -97,7 +97,7 @@ parallelizes near-memory accelerator accesses with row refreshes
 and removes the memory interference caused by SFM swap ins and
 outs.</p>
 <section id="check-list-meta-information">
-<h3>Check-List (meta-information):<a class="headerlink" href="#check-list-meta-information" title="Link to this heading"></a></h3>
+<h3>Check-List (meta-information):<a class="headerlink" href="#check-list-meta-information" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Algorithm:</strong> Model of the XFM Memory Module and Sensitivity Analyses</p></li>
 <li><p><strong>Program:</strong>  SPEC 2017, Licensed Benchmark Suite</p></li>
@@ -114,11 +114,11 @@ outs.</p>
 </ul>
 </section>
 <section id="hardware-dependencies">
-<h3>Hardware dependencies<a class="headerlink" href="#hardware-dependencies" title="Link to this heading"></a></h3>
+<h3>Hardware dependencies<a class="headerlink" href="#hardware-dependencies" title="Permalink to this heading"></a></h3>
 <p>Some experiments depend on access to a server which can be a multi-core server which can be allocated as a single Intel server (c6220 node) available through cloudlab. This hardware is sufficient to reproduce all results.</p>
 </section>
 <section id="installation">
-<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h3>
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h3>
 <p>Obtain the code and sub-modules from github:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/neel-patel-1/XFM_MICRO2023.git
 git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
@@ -128,19 +128,19 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
 Also, scripts for running each experiment are provided as bash shell scripts.</p>
 </section>
 <section id="results">
-<h3>Results:<a class="headerlink" href="#results" title="Link to this heading"></a></h3>
+<h3>Results:<a class="headerlink" href="#results" title="Permalink to this heading"></a></h3>
 <p>XFM sensitivity analyses can be reproduced using scripts compatible with the CM reproducibility project. The results include compression ratios
 achievable by XFM for different memory configurations, and an evaluation of contention between SPEC workloads and corunning (de)compression tasks.</p>
 </section>
 </section>
 <section id="publications">
-<h2>Publications<a class="headerlink" href="#publications" title="Link to this heading"></a></h2>
+<h2>Publications<a class="headerlink" href="#publications" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Neel Patel, Amin Mamandipoor, Derrick Quinn, Mohammad Alian, “XFM: Accelerated Software-Defined Far Memory,” MICRO 2023 [<a class="reference external" href="?">paper</a>] [<a class="reference external" href="?">slides</a>]</p></li>
 </ul>
 </section>
 <section id="personnel">
-<h2>Personnel<a class="headerlink" href="#personnel" title="Link to this heading"></a></h2>
+<h2>Personnel<a class="headerlink" href="#personnel" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://people.eecs.ku.edu/~n869p538/">Neel</a> Patel (Lead Author Student)</p></li>
 <li><p><a class="reference external" href="https://amin-mamandi.github.io/">Amin</a> Mamandipoor (Co-Author Student)</p></li>
@@ -155,6 +155,7 @@ achievable by XFM for different memory configurations, and an evaluation of cont
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="ProfilingGem5.html" class="btn btn-neutral float-left" title="Profiling an Architectural Simulator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="SmartDIMM.html" class="btn btn-neutral float-right" title="SmartDIMM: In-Memory Acceleration of Upper Layer Protocols" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
