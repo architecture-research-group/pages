@@ -15,7 +15,7 @@ Please visit our open-source repository on github [here_] for detailed tutorial 
 
 Publications
 ^^^^^^^^^^^^^^^^^^^
-• Johnson Umeike, Siddharth Agarwal, Nikita Lazarev, Mohammad Alian, "Userspace Networking in gem5," ISPASS 2023 [paper_] [slides_]
+• Johnson Umeike, Siddharth Agarwal, Nikita Lazarev, Mohammad Alian, "Userspace Networking in gem5," ISPASS 2024 [paper_] [slides_]
 
 .. _paper: https://kansas-my.sharepoint.com/:b:/g/personal/m258a886_home_ku_edu/EerhTJA-ylBGmTJBkRRSuHwBi8j4ejPcSLKhBsMvltj9zA?e=JYmhV0
 
