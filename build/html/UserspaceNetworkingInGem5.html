@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Userspace Networking in gem5 &mdash; Architecture Research Group 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="SmartDIMM: In-Memory Acceleration of Upper Layer Protocols" href="SmartDIMM.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Architecture Research Group
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="staff.html">People</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ProfilingGem5.html">Profiling an Architectural Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XFM.html">Accelerating Software Defined Far Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SmartDIMM.html">SmartDIMM: In-Memory Acceleration of Upper Layer Protocols</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Userspace Networking in gem5</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tutorials">Tutorials:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#publications">Publications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#personnel">Personnel</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Architecture Research Group</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Userspace Networking in gem5</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/UserspaceNetworkingInGem5.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="userspace-networking-in-gem5">
+<h1>Userspace Networking in gem5<a class="headerlink" href="#userspace-networking-in-gem5" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>In this work, we first demonstrate the limitations of gem5’s current network stack in achieving high network bandwidth. Then, we enable a userspace networking stack on gem5. We extend gem5’s NIC hardware model and device driver to support userspace device drivers running the DPDK framework. Additionally, we implement a network load generator hardware model in gem5 to generate various traffic patterns and perform per-packet timestamp and latency measurements without introducing packet loss. We develop a suite of six networkintensive benchmarks for stress testing the host network stack. These applications, based on DPDK, can run on both gem5 and real systems. Our experimental results show that enabling userspace networking improves gem5’s network bandwidth by 6.3× compared with the current Linux kernel software stack. We characterize the performance of DPDK benchmarks running on both a real system and gem5, and evaluate the sensitivity of the applications to various system and microarchitecture parameters. This work marks the first step in refactoring the networking subsystem in gem5.</p>
+<section id="tutorials">
+<h3>Tutorials:<a class="headerlink" href="#tutorials" title="Permalink to this heading"></a></h3>
+<p>Please visit our open-source repository on github [<a class="reference external" href="https://github.com/architecture-research-group/gem5-dpdk-setup">here</a>] for detailed tutorial and links on how to enable userspace networking in gem5.</p>
+</section>
+</section>
+<section id="publications">
+<h2>Publications<a class="headerlink" href="#publications" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Johnson Umeike, Siddharth Agarwal, Nikita Lazarev, Mohammad Alian, “Userspace Networking in gem5,” ISPASS 2023 [<a class="reference external" href="https://kansas-my.sharepoint.com/:b:/g/personal/m258a886_home_ku_edu/EerhTJA-ylBGmTJBkRRSuHwBi8j4ejPcSLKhBsMvltj9zA?e=JYmhV0">paper</a>] [<a class="reference external" href="https://kansas-my.sharepoint.com/:p:/g/personal/c834u979_home_ku_edu/EUMSrOwoR7pPoHCWeSccFw0BSWumV2HBLMdwVAC8e8cNTQ?e=2W8hRj">slides</a>]</p></li>
+</ul>
+</section>
+<section id="personnel">
+<h2>Personnel<a class="headerlink" href="#personnel" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jumeike.github.io/">Johnson</a> Umeike (Lead Author Student)</p></li>
+<li><p><a class="reference external" href="https://www.linkedin.com/in/siddharth-agarwal99/">Siddharth</a> Agarwal (Co-Author Student)</p></li>
+<li><p><a class="reference external" href="https://www.nikita.tech/">Nikita</a> Lazarev (Co-Author Student)</p></li>
+<li><p><a class="reference external" href="https://alian-eecs.ku.edu/">Mohammad</a> Alian (Principal Investigator)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SmartDIMM.html" class="btn btn-neutral float-left" title="SmartDIMM: In-Memory Acceleration of Upper Layer Protocols" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 KU Architecture Research Group - 2335 Irving Hill Rd, Lawrence, KS 66045, United States.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
