@@ -317,7 +317,7 @@ Publications
 ^^^^^^^^^^^^^^^^^^^
 • Johnson Umeike, Neel Patel, Alex Manley, Amin Mamandipoor, Heechul Yun, Mohammad Alian, "Profiling gem5 Simulator," ISPASS 2023 [paper_] [slides_]
 
-.. _paper: https://kansas-my.sharepoint.com/personal/m258a886_home_ku_edu/Documents/Alian%20Research%20Group/docs/papers/2023/ispass-gem5_profiling/ISPASS_2023_Profiling_gem5_Simulator_Final_Paper.pdf?CT=1680301153189&OR=ItemsView
+.. _paper: https://kansas-my.sharepoint.com/:b:/g/personal/m258a886_home_ku_edu/ETZrq0le_xVBkm5g9ADYNkQBLQglaDwcuEzUCEveOK4jMw?e=HlGQiz
 
 .. _slides: http://arg.ku.edu/build/html/ProfilingGem5.html#publications
 
