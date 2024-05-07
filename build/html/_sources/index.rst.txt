@@ -41,6 +41,7 @@ Project Catalog
    ProfilingGem5
    XFM
    SmartDIMM
+   UserspaceNetworkingInGem5
 
 =======
    .. Project3
