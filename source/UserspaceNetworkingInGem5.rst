@@ -19,7 +19,7 @@ Publications
 
 .. _paper: https://kansas-my.sharepoint.com/:b:/g/personal/m258a886_home_ku_edu/EerhTJA-ylBGmTJBkRRSuHwBi8j4ejPcSLKhBsMvltj9zA?e=JYmhV0
 
-.. _slides: https://kansas-my.sharepoint.com/:p:/g/personal/c834u979_home_ku_edu/EUMSrOwoR7pPoHCWeSccFw0BSWumV2HBLMdwVAC8e8cNTQ?e=2W8hRj
+.. _slides: https://kansas-my.sharepoint.com/:b:/g/personal/c834u979_home_ku_edu/EXi9d7VD5a5NtnGqiiK8MdsBPHQTiAarpuleYl04kUFLbw?e=vE9gp6 
 
 
 Personnel
