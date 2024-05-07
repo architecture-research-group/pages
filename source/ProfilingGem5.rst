@@ -343,7 +343,7 @@ Personnel
 
 • Mohammad_ Alian (Principal Investigator)
 
-.. _Johnson: https://UmeikeJohnson.github.io/
+.. _Johnson: https://jumeike.github.io/
 
 .. _Neel: https://people.eecs.ku.edu/~n869p538/
 
